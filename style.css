@@ -1,0 +1,21 @@
+.header {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.btn h5 {
+    color: black;
+}
+
+.btn-outline-dark:hover {
+    transition: all 0.4s ease-in-out;
+    /*transform: translateY(-5px);*/
+    transform: translate(-5px, -5px);
+    box-shadow: 2px 3px 8px 0 yellow;
+}
+
+.btn-outline-dark:hover h5 {
+    color: yellow;
+}
+
+
