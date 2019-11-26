@@ -1,6 +1,13 @@
+body {
+    background: repeat url("img/ripples.png");
+}
+
 .header {
     border: 2px solid black;
     border-radius: 10px;
+    background-image: radial-gradient(farthest-side at 30px 20px, #fff, #000);
+    /*bobackground: content-box radial-gradient(yellow, skyblue);*/
+    color: #fcff62;
 }
 
 .btn h5 {
@@ -11,11 +18,11 @@
     transition: all 0.4s ease-in-out;
     /*transform: translateY(-5px);*/
     transform: translate(-5px, -5px);
-    box-shadow: 2px 3px 8px 0 yellow;
+    box-shadow: 2px 3px 8px 0 #7a9ce6;
 }
 
 .btn-outline-dark:hover h5 {
-    color: yellow;
+    color: #7a9ce6;
 }
 
 
