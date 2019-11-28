@@ -7,6 +7,8 @@
   <meta name="author" content="Sergey Salimov"/>
   <meta name="keywords" content="home work, home, work"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="font/css/fontello.css">
+<!--  <link rel="stylesheet" href="font/css/animation.css">-->
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,15 +28,31 @@
         </div>
       </div>
     </div>
+<!--classes-->
+<!--btn-outline-dark + alight (подсветка) for work; btn-success for done; disabled + aria-disabled="true" for lock-->
+<!--icons-->
+<!--icon-wrench for work; icon-ok-circled for done; icon-lock for locked hometask-->
     <!--Home task 1-->
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
       <div class="mx-1 my-1" id="HW1">
         <a href="https://github.com/SergeySalimov/FD2-Homework"
            target="_blank"
-           class="btn btn-link btn-block btn-outline-dark elight"
-           role="button">
+           class="btn btn-link btn-block btn-outline-dark alight"
+           role="button"
+           aria-disabled="false">
           <label for="HW1">
-            <h5 class="text-left text-sm-center">Home work #1</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-wrench pr-1"></i>Home work #1</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -46,9 +64,20 @@
            target="_blank"
            class="btn btn-link btn-block btn-outline-dark disabled"
            role="button"
-           aria-disabled="true">
+           aria-disabled="false">
           <label for="HW2">
-            <h5 class="text-left text-sm-center">Home work #2</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #2</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -62,7 +91,18 @@
            role="button"
            aria-disabled="true">
           <label for="HW3">
-            <h5 class="text-left text-sm-center">Home work #3</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #3</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -76,7 +116,18 @@
            role="button"
            aria-disabled="true">
           <label for="HW4">
-            <h5 class="text-left text-sm-center">Home work #4</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #4</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -90,7 +141,18 @@
            role="button"
            aria-disabled="true">
           <label for="HW5">
-            <h5 class="text-left text-sm-center">Home work #5</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #5</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -104,7 +166,18 @@
            role="button"
            aria-disabled="true">
           <label for="HW6">
-            <h5 class="text-left text-sm-center">Home work #6</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #6</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -118,7 +191,18 @@
            role="button"
            aria-disabled="true">
           <label for="HW7">
-            <h5 class="text-left text-sm-center">Home work #7</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #7</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -132,7 +216,18 @@
            role="button"
            aria-disabled="true">
           <label for="HW8">
-            <h5 class="text-left text-sm-center">Home work #8</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #8</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -146,7 +241,18 @@
            role="button"
            aria-disabled="true">
           <label for="HW9">
-            <h5 class="text-left text-sm-center">Home work #9</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #9</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>
@@ -160,7 +266,18 @@
            role="button"
            aria-disabled="true">
           <label for="HW10">
-            <h5 class="text-left text-sm-center">Home work #10</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #10</h5>
+            <details>
+              <summary>Task(s):</summary>
+              <ol>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+                <li>Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+                  для предварительного просмотра макета и визуальных макетах. </li>
+              </ol>
+              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
+              для предварительного просмотра макета и визуальных макетах.
+            </details>
           </label>
         </a>
       </div>

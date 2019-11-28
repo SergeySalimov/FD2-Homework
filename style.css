@@ -21,7 +21,7 @@ body {
     color: black;
 }
 
-.btn-outline-dark.elight {
+.btn-outline-dark.alight {
     box-shadow: 1px 2px 4px 0 black;
 }
 
@@ -35,5 +35,23 @@ body {
 .btn-outline-dark:hover h5 {
     color: lightyellow;
 }
+.btn-outline-dark:hover details,
+.btn-success h5,
+.btn-success details {
+    color: yellow;
+}
 
+details {
+    text-align: left;
+    font-size: 0.7rem;
+    color: darkblue;
+}
+
+.disabled details {
+    color:grey;
+}
+
+summary {
+    font-size: 0.9rem;
+}
 
