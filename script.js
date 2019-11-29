@@ -1,6 +1,6 @@
-const buttonBlue = document.getElementById('btn-blue');
-const buttonGreen = document.getElementById('btn-green');
-const buttonYellow = document.getElementById('btn-yellow');
+const buttonBlue = document.querySelector('.btn-blue');
+const buttonGreen = document.querySelector('.btn-green');
+const buttonYellow = document.querySelector('.btn-yellow');
 const inHeader = document.querySelector('.header');
 
 

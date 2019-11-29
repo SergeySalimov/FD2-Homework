@@ -11,6 +11,12 @@ body {
     position: relative;
 }
 
+.btn-back {
+    position: absolute;
+    top: 40%;
+    left: 5px;
+}
+
 .btn-toolbar {
     position: absolute;
     top: 5px;
@@ -21,23 +27,37 @@ body {
     color: black;
 }
 
-.btn-outline-dark.alight {
-    box-shadow: 1px 2px 4px 0 black;
+.btn p {
+    font-size: 0.7rem;
+    text-align: justify;
+    text-indent: 10px;
+    font-weight: 600;
+    color: white;
 }
 
-.btn-outline-dark:hover {
+.btn-outline-dark.alight,
+.btn-secondary.alight {
+    box-shadow: 2px 4px 8px 0 black;
+}
+
+.btn-outline-dark:hover,
+.btn-secondary:hover {
     transition: all 0.4s ease-in-out;
     /*transform: translateY(-5px);*/
     transform: translate(-5px, -5px);
     box-shadow: 2px 3px 8px 0 yellow;
 }
 
-.btn-outline-dark:hover h5 {
+.btn-outline-dark:hover h5,
+.btn-secondary details,
+.btn-secondary:hover h5 {
     color: lightyellow;
 }
 .btn-outline-dark:hover details,
 .btn-success h5,
-.btn-success details {
+.btn-success details,
+.btn-secondary:hover p,
+.btn-secondary:hover details {
     color: yellow;
 }
 
