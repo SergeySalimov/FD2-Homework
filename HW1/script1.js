@@ -43,7 +43,7 @@ function getNumWordBySwitch(num, wrd1, wrd2, wrd3) {
 function makeTest() {
   let applesCount = parseInt(prompt('Сколько яблок?'));
   if (applesCount) {
-    alert(`У вас ${applesCount} ${getNumWordBySwitch(applesCount, "яблоко", "яблока", "яблок")}.`);
+    alert(`У вас ${applesCount} ${getNumWordBySwitch(applesCount, 'яблоко', 'яблока', 'яблок')}.`);
   }
 }
 
