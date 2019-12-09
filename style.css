@@ -36,12 +36,14 @@ body {
 }
 
 .btn-outline-dark.alight,
+.btn-outline-success.alight,
 .btn-success.alight,
 .btn-secondary.alight {
     box-shadow: 2px 4px 8px 0 black;
 }
 
 .btn-outline-dark:hover,
+.btn-link.btn-outline-success:hover,
 .btn-link.btn-success:hover,
 .btn-secondary:hover {
     transition: all 0.4s ease-in-out;
@@ -52,22 +54,25 @@ body {
 
 .btn-outline-dark:hover h5,
 .btn-secondary details,
-.btn-secondary:hover h5,
-.btn-success h5 i {
+.btn-outline-success:hover h5,
+.btn-secondary:hover h5 {
     color: lightyellow;
+}
+
+.btn-outline-success h5 i {
+    color: green;
 }
 
 .btn-outline-dark:hover details,
 .btn-secondary:hover p,
 .btn-secondary:hover details,
-.btn-success:hover h5,
-.btn-success:hover details,
-.btn-success:hover h5 i {
+.btn-outline-success:hover details,
+.btn-outline-success:hover h5 i {
     color: yellow;
 }
 
-.btn-success details,
-.btn-success h5 {
+.btn-outline-success details,
+.btn-outline-success h5 {
     color: darkblue;
 }
 
