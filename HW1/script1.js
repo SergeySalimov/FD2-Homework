@@ -44,6 +44,7 @@ function getNumWordBySwitch(num, wrd1, wrd2, wrd3) {
 function makeTest() {
   const applesCount = parseInt(prompt('Сколько яблок?'), 10);
   if (applesCount) {
+    // eslint-disable-next-line max-len
     alert(`У вас ${applesCount} ${getNumWordBySwitch(applesCount, 'яблоко', 'яблока', 'яблок')}.`);
   }
 }
