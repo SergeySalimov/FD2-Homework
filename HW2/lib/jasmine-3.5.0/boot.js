@@ -1,5 +1,5 @@
 /**
- Starting with version 2.0, this file "boots" Jasmine, performing all of the necessary initialization before executing the loaded environment and all of a project's specs. This file should be loaded after `jasmine.js` and `jasmine_html.js`, but before any project source files or spec files are loaded. Thus this file can also be used to customize Jasmine for a project.
+ Starting with version 2.0, this file "boots" Jasmine, performing all of the necessary initialization before executing the loaded environment and all of a project's specs. This file should be loaded after `jasmine.js` and `jasmine_html.js`, but before any project source files or TEST files are loaded. Thus this file can also be used to customize Jasmine for a project.
 
  If a project is using Jasmine via the standalone distribution, this file can be customized directly. If a project is using Jasmine via the [Ruby gem][jasmine-gem], this file can be copied into the support directory via `jasmine copy_boot_js`. Other environments (e.g., Python) will have different mechanisms.
 
@@ -49,7 +49,7 @@
     getWindowLocation: function() { return window.location; }
   });
 
-  var filterSpecs = !!queryString.getParam("spec");
+  var filterSpecs = !!queryString.getParam("TEST");
 
   var config = {
     failFast: queryString.getParam("failFast"),
@@ -70,7 +70,7 @@
 
   /**
    * ## Reporters
-   * The `HtmlReporter` builds all of the HTML UI for the runner page. This reporter paints the dots, stars, and x's for specs, as well as all spec names and all failures (if any).
+   * The `HtmlReporter` builds all of the HTML UI for the runner page. This reporter paints the dots, stars, and x's for specs, as well as all TEST names and all failures (if any).
    */
   var htmlReporter = new jasmine.HtmlReporter({
     env: env,
@@ -84,16 +84,16 @@
   });
 
   /**
-   * The `jsApiReporter` also receives spec results, and is used by any environment that needs to extract the results  from JavaScript.
+   * The `jsApiReporter` also receives TEST results, and is used by any environment that needs to extract the results  from JavaScript.
    */
   env.addReporter(jasmineInterface.jsApiReporter);
   env.addReporter(htmlReporter);
 
   /**
-   * Filter which specs will be run by matching the start of the full name against the `spec` query param.
+   * Filter which specs will be run by matching the start of the full name against the `TEST` query param.
    */
   var specFilter = new jasmine.HtmlSpecFilter({
-    filterString: function() { return queryString.getParam("spec"); }
+    filterString: function() { return queryString.getParam("TEST"); }
   });
 
   config.specFilter = function(spec) {

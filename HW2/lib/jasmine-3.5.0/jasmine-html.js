@@ -55,7 +55,7 @@ jasmineRequire.HtmlReporter = function(j$) {
   ResultsStateBuilder.prototype.specStarted = function(result) {};
 
   ResultsStateBuilder.prototype.specDone = function(result) {
-    this.currentParent.addChild(result, 'spec');
+    this.currentParent.addChild(result, 'TEST');
 
     if (result.status !== 'excluded') {
       this.specsExecuted++;
@@ -206,7 +206,7 @@ jasmineRequire.HtmlReporter = function(j$) {
           ' of ' +
           totalSpecsDefined +
           ' specs - run all';
-        var skippedLink = addToExistingQueryString('spec', '');
+        var skippedLink = addToExistingQueryString('TEST', '');
         alert.appendChild(
           createDom(
             'span',
@@ -226,12 +226,12 @@ jasmineRequire.HtmlReporter = function(j$) {
 
       if (totalSpecsDefined > 0 || failed) {
         statusBarMessage +=
-          pluralize('spec', stateBuilder.specsExecuted) +
+          pluralize('TEST', stateBuilder.specsExecuted) +
           ', ' +
           pluralize('failure', stateBuilder.failureCount);
         if (stateBuilder.pendingSpecCount) {
           statusBarMessage +=
-            ', ' + pluralize('pending spec', stateBuilder.pendingSpecCount);
+            ', ' + pluralize('pending TEST', stateBuilder.pendingSpecCount);
         }
       }
 
@@ -326,7 +326,7 @@ jasmineRequire.HtmlReporter = function(j$) {
         alert.appendChild(
           createDom(
             'span',
-            { className: 'jasmine-menu jasmine-bar jasmine-spec-list' },
+            { className: 'jasmine-menu jasmine-bar jasmine-TEST-list' },
             createDom('span', {}, 'Spec List | '),
             createDom(
               'a',
@@ -341,7 +341,7 @@ jasmineRequire.HtmlReporter = function(j$) {
             { className: 'jasmine-menu jasmine-bar jasmine-failure-list' },
             createDom(
               'a',
-              { className: 'jasmine-spec-list-menu', href: '#' },
+              { className: 'jasmine-TEST-list-menu', href: '#' },
               'Spec List'
             ),
             createDom('span', {}, ' | Failures ')
@@ -351,8 +351,8 @@ jasmineRequire.HtmlReporter = function(j$) {
         find('.jasmine-failures-menu').onclick = function() {
           setMenuModeTo('jasmine-failure-list');
         };
-        find('.jasmine-spec-list-menu').onclick = function() {
-          setMenuModeTo('jasmine-spec-list');
+        find('.jasmine-TEST-list-menu').onclick = function() {
+          setMenuModeTo('jasmine-TEST-list');
         };
 
         setMenuModeTo('jasmine-failure-list');
@@ -369,7 +369,7 @@ jasmineRequire.HtmlReporter = function(j$) {
     function failureDom(result) {
       var failure = createDom(
         'div',
-        { className: 'jasmine-spec-detail jasmine-failed' },
+        { className: 'jasmine-TEST-detail jasmine-failed' },
         failureDescription(result, stateBuilder.currentParent),
         createDom('div', { className: 'jasmine-messages' })
       );
@@ -434,7 +434,7 @@ jasmineRequire.HtmlReporter = function(j$) {
           summaryList(resultNode, suiteListNode);
           domParent.appendChild(suiteListNode);
         }
-        if (resultNode.type === 'spec') {
+        if (resultNode.type === 'TEST') {
           if (domParent.getAttribute('class') !== 'jasmine-specs') {
             specListNode = createDom('ul', { className: 'jasmine-specs' });
             domParent.appendChild(specListNode);
@@ -457,7 +457,7 @@ jasmineRequire.HtmlReporter = function(j$) {
               'li',
               {
                 className: 'jasmine-' + resultNode.result.status,
-                id: 'spec-' + resultNode.result.id
+                id: 'TEST-' + resultNode.result.id
               },
               createDom(
                 'a',
@@ -489,7 +489,7 @@ jasmineRequire.HtmlReporter = function(j$) {
             createDom(
               'label',
               { className: 'jasmine-label', for: 'jasmine-fail-fast' },
-              'stop execution on spec failure'
+              'stop execution on TEST failure'
             )
           ),
           createDom(
@@ -503,7 +503,7 @@ jasmineRequire.HtmlReporter = function(j$) {
             createDom(
               'label',
               { className: 'jasmine-label', for: 'jasmine-throw-failures' },
-              'stop spec on expectation failure'
+              'stop TEST on expectation failure'
             )
           ),
           createDom(
@@ -618,7 +618,7 @@ jasmineRequire.HtmlReporter = function(j$) {
         suite = suite.parent;
       }
 
-      return addToExistingQueryString('spec', els.join(' '));
+      return addToExistingQueryString('TEST', els.join(' '));
     }
 
     function addDeprecationWarnings(result) {
@@ -678,7 +678,7 @@ jasmineRequire.HtmlReporter = function(j$) {
     }
 
     function specHref(result) {
-      return addToExistingQueryString('spec', result.fullName);
+      return addToExistingQueryString('TEST', result.fullName);
     }
 
     function seedHref(seed) {
@@ -704,7 +704,7 @@ jasmineRequire.HtmlReporter = function(j$) {
     }
 
     function hasActiveSpec(resultNode) {
-      if (resultNode.type == 'spec' && resultNode.result.status != 'excluded') {
+      if (resultNode.type == 'TEST' && resultNode.result.status != 'excluded') {
         return true;
       }
 

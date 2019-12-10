@@ -183,7 +183,7 @@ getJasmineRequireObj().base = function(j$, jasmineGlobal) {
    */
   j$.MAX_PRETTY_PRINT_CHARS = 1000;
   /**
-   * Default number of milliseconds Jasmine will wait for an asynchronous spec to complete.
+   * Default number of milliseconds Jasmine will wait for an asynchronous TEST to complete.
    * @name jasmine.DEFAULT_TIMEOUT_INTERVAL
    * @since 1.3.0
    */
@@ -675,15 +675,15 @@ getJasmineRequireObj().Spec = function(j$) {
 
     /**
      * @typedef SpecResult
-     * @property {Int} id - The unique id of this spec.
-     * @property {String} description - The description passed to the {@link it} that created this spec.
-     * @property {String} fullName - The full description including all ancestors of this spec.
-     * @property {Expectation[]} failedExpectations - The list of expectations that failed during execution of this spec.
-     * @property {Expectation[]} passedExpectations - The list of expectations that passed during execution of this spec.
-     * @property {Expectation[]} deprecationWarnings - The list of deprecation warnings that occurred during execution this spec.
-     * @property {String} pendingReason - If the spec is {@link pending}, this will be the reason.
-     * @property {String} status - Once the spec has completed, this string represents the pass/fail status of this spec.
-     * @property {number} duration - The time in ms used by the spec execution, including any before/afterEach.
+     * @property {Int} id - The unique id of this TEST.
+     * @property {String} description - The description passed to the {@link it} that created this TEST.
+     * @property {String} fullName - The full description including all ancestors of this TEST.
+     * @property {Expectation[]} failedExpectations - The list of expectations that failed during execution of this TEST.
+     * @property {Expectation[]} passedExpectations - The list of expectations that passed during execution of this TEST.
+     * @property {Expectation[]} deprecationWarnings - The list of deprecation warnings that occurred during execution this TEST.
+     * @property {String} pendingReason - If the TEST is {@link pending}, this will be the reason.
+     * @property {String} status - Once the TEST has completed, this string represents the pass/fail status of this TEST.
+     * @property {number} duration - The time in ms used by the TEST execution, including any before/afterEach.
      */
     this.result = {
       id: this.id,
@@ -750,7 +750,7 @@ getJasmineRequireObj().Spec = function(j$) {
         self.result.duration = self.timer.elapsed();
         onComplete(
           self.result.status === 'failed' &&
-            new j$.StopExecutionError('spec failed')
+            new j$.StopExecutionError('TEST failed')
         );
       },
       userContext: this.userContext()
@@ -953,7 +953,7 @@ getJasmineRequireObj().Env = function(j$) {
      */
     var config = {
       /**
-       * Whether to randomize spec execution order
+       * Whether to randomize TEST execution order
        * @name Configuration#random
        * @since 3.3.0
        * @type Boolean
@@ -970,7 +970,7 @@ getJasmineRequireObj().Env = function(j$) {
        */
       seed: null,
       /**
-       * Whether to stop execution of the suite after the first spec failure
+       * Whether to stop execution of the suite after the first TEST failure
        * @name Configuration#failFast
        * @since 3.3.0
        * @type Boolean
@@ -978,9 +978,9 @@ getJasmineRequireObj().Env = function(j$) {
        */
       failFast: false,
       /**
-       * Whether to fail the spec if it ran no expectations. By default
-       * a spec that ran no expectations is reported as passed. Setting this
-       * to true will report such spec as a failure.
+       * Whether to fail the TEST if it ran no expectations. By default
+       * a TEST that ran no expectations is reported as passed. Setting this
+       * to true will report such TEST as a failure.
        * @name Configuration#failSpecWithNoExpectations
        * @since 3.5.0
        * @type Boolean
@@ -1152,7 +1152,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.setDefaultSpyStrategy = function(defaultStrategyFn) {
       if (!currentRunnable()) {
         throw new Error(
-          'Default spy strategy must be set in a before function or a spec'
+          'Default spy strategy must be set in a before function or a TEST'
         );
       }
       runnableResources[
@@ -1163,7 +1163,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.addSpyStrategy = function(name, fn) {
       if (!currentRunnable()) {
         throw new Error(
-          'Custom spy strategies must be added in a before function or a spec'
+          'Custom spy strategies must be added in a before function or a TEST'
         );
       }
       runnableResources[currentRunnable().id].customSpyStrategies[name] = fn;
@@ -1172,7 +1172,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.addCustomEqualityTester = function(tester) {
       if (!currentRunnable()) {
         throw new Error(
-          'Custom Equalities must be added in a before function or a spec'
+          'Custom Equalities must be added in a before function or a TEST'
         );
       }
       runnableResources[currentRunnable().id].customEqualityTesters.push(
@@ -1183,7 +1183,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.addMatchers = function(matchersToAdd) {
       if (!currentRunnable()) {
         throw new Error(
-          'Matchers must be added in a before function or a spec'
+          'Matchers must be added in a before function or a TEST'
         );
       }
       var customMatchers =
@@ -1196,7 +1196,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.addAsyncMatchers = function(matchersToAdd) {
       if (!currentRunnable()) {
         throw new Error(
-          'Async Matchers must be added in a before function or a spec'
+          'Async Matchers must be added in a before function or a TEST'
         );
       }
       var customAsyncMatchers =
@@ -1211,7 +1211,7 @@ getJasmineRequireObj().Env = function(j$) {
 
     var nextSpecId = 0;
     var getNextSpecId = function() {
-      return 'spec' + nextSpecId++;
+      return 'TEST' + nextSpecId++;
     };
 
     var nextSuiteId = 0;
@@ -1320,7 +1320,7 @@ getJasmineRequireObj().Env = function(j$) {
 
     /**
      * Sets whether Jasmine should throw an Error when an expectation fails.
-     * This causes a spec to only have one expectation failure.
+     * This causes a TEST to only have one expectation failure.
      * @name Env#throwOnExpectationFailure
      * @since 2.3.0
      * @function
@@ -1342,11 +1342,11 @@ getJasmineRequireObj().Env = function(j$) {
     };
 
     /**
-     * Set whether to stop suite execution when a spec fails
+     * Set whether to stop suite execution when a TEST fails
      * @name Env#stopOnSpecFailure
      * @since 2.7.0
      * @function
-     * @param {Boolean} value Whether to stop suite execution when a spec fails
+     * @param {Boolean} value Whether to stop suite execution when a TEST fails
      * @deprecated Use the `failFast` option with {@link Env#configure}
      */
     this.stopOnSpecFailure = function(value) {
@@ -1386,7 +1386,7 @@ getJasmineRequireObj().Env = function(j$) {
     };
 
     /**
-     * Set the random number seed for spec randomization
+     * Set the random number seed for TEST randomization
      * @name Env#seed
      * @since 2.4.0
      * @function
@@ -1535,7 +1535,7 @@ getJasmineRequireObj().Env = function(j$) {
         /**
          * `specDone` is invoked when an `it` and its associated `beforeEach` and `afterEach` functions have been run.
          *
-         * While jasmine doesn't require any specific functions, not defining a `specDone` will make it impossible for a reporter to know when a spec has failed.
+         * While jasmine doesn't require any specific functions, not defining a `specDone` will make it impossible for a reporter to know when a TEST has failed.
          * @function
          * @name Reporter#specDone
          * @param {SpecResult} result
@@ -1725,7 +1725,7 @@ getJasmineRequireObj().Env = function(j$) {
       currentSpies: function() {
         if (!currentRunnable()) {
           throw new Error(
-            'Spies must be created in a before function or a spec'
+            'Spies must be created in a before function or a TEST'
           );
         }
         return runnableResources[currentRunnable().id].spies;
@@ -1969,7 +1969,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.expect = function(actual) {
       if (!currentRunnable()) {
         throw new Error(
-          "'expect' was used when there was no current spec, this could be because an asynchronous test timed out"
+          "'expect' was used when there was no current TEST, this could be because an asynchronous test timed out"
         );
       }
 
@@ -1979,7 +1979,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.expectAsync = function(actual) {
       if (!currentRunnable()) {
         throw new Error(
-          "'expectAsync' was used when there was no current spec, this could be because an asynchronous test timed out"
+          "'expectAsync' was used when there was no current TEST, this could be because an asynchronous test timed out"
         );
       }
 
@@ -2034,7 +2034,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.fail = function(error) {
       if (!currentRunnable()) {
         throw new Error(
-          "'fail' was used when there was no current spec, this could be because an asynchronous test timed out"
+          "'fail' was used when there was no current TEST, this could be because an asynchronous test timed out"
         );
       }
 
@@ -2174,7 +2174,7 @@ getJasmineRequireObj().JsApiReporter = function(j$) {
     };
 
     /**
-     * Get all spec results.
+     * Get all TEST results.
      * @name jsApiReporter#specs
      * @since 2.0.0
      * @function
@@ -6560,16 +6560,16 @@ getJasmineRequireObj().interface = function(jasmine, env) {
     },
 
     /**
-     * Define a single spec. A spec should contain one or more {@link expect|expectations} that test the state of the code.
+     * Define a single TEST. A TEST should contain one or more {@link expect|expectations} that test the state of the code.
      *
-     * A spec whose expectations all succeed will be passing and a spec with any failures will fail.
+     * A TEST whose expectations all succeed will be passing and a TEST with any failures will fail.
      * @name it
      * @since 1.3.0
      * @function
      * @global
-     * @param {String} description Textual description of what this spec is checking
+     * @param {String} description Textual description of what this TEST is checking
      * @param {implementationCallback} [testFunction] Function that contains the code of your test. If not provided the test will be `pending`.
-     * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async spec.
+     * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async TEST.
      * @see async
      */
     it: function() {
@@ -6579,12 +6579,12 @@ getJasmineRequireObj().interface = function(jasmine, env) {
     /**
      * A temporarily disabled [`it`]{@link it}
      *
-     * The spec will report as `pending` and will not be executed.
+     * The TEST will report as `pending` and will not be executed.
      * @name xit
      * @since 1.3.0
      * @function
      * @global
-     * @param {String} description Textual description of what this spec is checking.
+     * @param {String} description Textual description of what this TEST is checking.
      * @param {implementationCallback} [testFunction] Function that contains the code of your test. Will not be executed.
      */
     xit: function() {
@@ -6599,9 +6599,9 @@ getJasmineRequireObj().interface = function(jasmine, env) {
      * @since 2.1.0
      * @function
      * @global
-     * @param {String} description Textual description of what this spec is checking.
+     * @param {String} description Textual description of what this TEST is checking.
      * @param {implementationCallback} testFunction Function that contains the code of your test.
-     * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async spec.
+     * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async TEST.
      * @see async
      */
     fit: function() {
@@ -6669,7 +6669,7 @@ getJasmineRequireObj().interface = function(jasmine, env) {
     },
 
     /**
-     * Create an expectation for a spec.
+     * Create an expectation for a TEST.
      * @name expect
      * @since 1.3.0
      * @function
@@ -6682,10 +6682,10 @@ getJasmineRequireObj().interface = function(jasmine, env) {
     },
 
     /**
-     * Create an asynchronous expectation for a spec. Note that the matchers
+     * Create an asynchronous expectation for a TEST. Note that the matchers
      * that are provided by an asynchronous expectation all return promises
-     * which must be either returned from the spec or waited for using `await`
-     * in order for Jasmine to associate them with the correct spec.
+     * which must be either returned from the TEST or waited for using `await`
+     * in order for Jasmine to associate them with the correct TEST.
      * @name expectAsync
      * @since 3.3.0
      * @function
@@ -6702,19 +6702,19 @@ getJasmineRequireObj().interface = function(jasmine, env) {
     },
 
     /**
-     * Mark a spec as pending, expectation results will be ignored.
+     * Mark a TEST as pending, expectation results will be ignored.
      * @name pending
      * @since 2.0.0
      * @function
      * @global
-     * @param {String} [message] - Reason the spec is pending.
+     * @param {String} [message] - Reason the TEST is pending.
      */
     pending: function() {
       return env.pending.apply(env, arguments);
     },
 
     /**
-     * Explicitly mark a spec as failed.
+     * Explicitly mark a TEST as failed.
      * @name fail
      * @since 2.1.0
      * @function
