@@ -26,13 +26,11 @@ function arrayDiff(arr1, arr2) {
   if (arr1 === [] || arr2 === []) {
     return arr1;
   }
-  let result = [];
-  let newArr1 = arr1;
+  let result = [...arr1];
   let iterration = arr2.length;
   while (iterration >= 0) {
     const valueToRemove = arr2[iterration];
-    result = newArr1.filter((number) => number !== valueToRemove);
-    newArr1 = result;
+    result = result.filter((number) => number !== valueToRemove);
     iterration -= 1;
   }
   return result;
