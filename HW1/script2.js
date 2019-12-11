@@ -73,7 +73,7 @@ alert(`==========   А Н К Е Т А ===========
     Ваше ФИО: ${SURNAME} ${NAME} ${PATRONYMIC}
     Ваш возраст в годах: ${getNumAndWord(age, 'год', 'года', 'лет')}
     Ваш возраст в днях: ${getNumAndWord((age * 365), 'день', 'дня', 'дней')}
-    Через 5 лет вам будет: ${getNumAndWord((age + 5), 'год', 'года', 'лет')}
+    Через 5 лет вам будет: ${getNumAndWord((+age + 5), 'год', 'года', 'лет')}
     Ваш пол: ${getYesOrNoOrOtherAnswer(SEX, MALE, FEMALE)}
     Вы на пенсии: ${getYesOrNoOrOtherAnswer(checkOnRetire(age, SEX))}
  ==============================`);
