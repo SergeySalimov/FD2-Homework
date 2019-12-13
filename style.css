@@ -54,6 +54,7 @@ body {
 
 .btn-outline-dark:hover h5,
 .btn-secondary details,
+.btn-success details,
 .btn-outline-success:hover h5,
 .btn-secondary:hover h5 {
     color: lightyellow;
