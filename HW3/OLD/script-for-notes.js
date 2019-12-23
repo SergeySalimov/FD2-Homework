@@ -60,6 +60,13 @@ function createCardStructure(titleToCreate, full = true) {
   return card;
 }
 
+function saveDataToStorage() {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const item of objNotes) {
+    sessionStorage.setItem(item.title, item.body);
+  }
+}
+
 formAddNotes.addEventListener('submit', (clcAddNote) => {
   const userInput = {};
   userInput.title = formAddNotes[0].value;
@@ -117,3 +124,5 @@ formDelNote.addEventListener('submit', (clcDelNote) => {
 
   clcDelNote.preventDefault();
 });
+
+saveDataToStorage();
