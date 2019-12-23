@@ -1,0 +1,15 @@
+body {
+    font-family: monospace;
+}
+
+textarea, button, ul {
+    margin-top: 3px;
+}
+
+.show {
+    display: inline;
+}
+
+.succes {
+    color: green;
+}
