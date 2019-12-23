@@ -1,24 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 const Notes = ((function () {
   const OBJECT_NAME = 'notes';
-  // eslint-disable-next-line max-len
-  let objNotes = [{title: '1', body: 'notes1'}, {title: '2', body: 'notes2'}];
-
   function initNotes() {
     if (localStorage.getItem(OBJECT_NAME)) {
-      objNotes = JSON.parse(localStorage.getItem(OBJECT_NAME));
-      return {
-        class: 'success',
-        text: 'Loaded data from localStorage',
-      };
+      return JSON.parse(localStorage.getItem(OBJECT_NAME));
     }
-    return {
-      class: 'warning',
-      text: 'No data in localStorage',
-    };
+    return [];
   }
 
-  initNotes();
+  const objNotes = initNotes();
 
   const saveData = (obj) => {
     const data = [...obj];
