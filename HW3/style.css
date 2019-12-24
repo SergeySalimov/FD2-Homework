@@ -3,7 +3,7 @@ body {
 }
 
 textarea, button, ul {
-    margin-top: 3px;
+    margin-top: 7px;
 }
 
 #messages span::before {
@@ -14,25 +14,26 @@ textarea, button, ul {
     padding-bottom: 5px;
 }
 
-span {
-    font-weight: bold;
+#messages span {
+    font-weight: 500;
     display: block;
+    color: white;
 }
 
 .success {
-    color: darkgreen;
+    background-color: green;
 }
 
 .warning {
-    color: orange;
+    background-color: orange;
 }
 
 .info {
-    color: darkcyan;
+    background-color: darkcyan;
 }
 
 .danger {
-    color: darkred;
+    background-color: red;
 }
 
 ul li {
@@ -45,8 +46,14 @@ ul li {
 
 ul li > span {
     text-align: center;
+    font-size: 1.7rem;
 }
 
 ul li > div {
     text-align: left;
+}
+
+button {
+    /*border-radius: 3px;*/
+    box-shadow: darkgrey 3px 3px 4px;
 }

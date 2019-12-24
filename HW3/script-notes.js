@@ -45,7 +45,7 @@ const Notes = ((function () {
     if (newTitle) {
       for (const item of objNotes) if (item.title === newTitle) return {
         error: false,
-        class: 'success',
+        class: 'info',
         text: 'Title is in object',
         title: item.title,
         body: item.body,
@@ -86,7 +86,7 @@ const Notes = ((function () {
     for (const item of objNotes) arrNewTitles.push(item.title);
     return {
       error: false,
-      class: 'success',
+      class: 'info',
       text: 'Return array of all titles',
       arr: arrNewTitles,
     };
