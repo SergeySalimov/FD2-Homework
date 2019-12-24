@@ -6,6 +6,26 @@ textarea, button, ul {
     margin-top: 3px;
 }
 
-.succes {
-    color: green;
+span::before {
+    content: ":";
+}
+
+span {
+    font-weight: bold;
+}
+
+.success {
+    color: darkgreen;
+}
+
+.warning {
+    color: orange;
+}
+
+.info {
+    color: darkcyan;
+}
+
+.danger {
+    color: darkred;
 }

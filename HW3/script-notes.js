@@ -106,7 +106,6 @@ const Notes = ((function () {
     };
   };
 
-
   return {
     init() {
       return initNotes();
@@ -126,6 +125,35 @@ const Notes = ((function () {
   };
 })());
 
+const Messages = ((function () {
+  const arrOfMessages = [];
+
+  const pushMessageToObj = (obj) => {
+    const newObj = {
+      class: obj.class,
+      text: obj.text,
+    };
+    arrOfMessages.push(newObj);
+    return true;
+  };
+
+  const getMessagesFromArrOfMessages = () => {
+    console.log(arrOfMessages);
+    // return last 5 messages
+    return arrOfMessages.slice(-5);
+  };
+
+  return {
+    push(obj) {
+      return pushMessageToObj(obj);
+    },
+    get() {
+      return getMessagesFromArrOfMessages();
+    },
+  };
+
+})());
+
 const UI = {
   btnAddNotes: document.getElementById('add-notes'),
   btnShowNote: document.getElementById('show-note'),
@@ -135,5 +163,30 @@ const UI = {
   inputBody: document.getElementById('card-body'),
   messagePlace: document.getElementById('messages'),
   outputPlace: document.getElementById('output'),
-
+  showMessage() {
+    this.clearMessage();
+    const stackOfMsg = Messages.get();
+    stackOfMsg.forEach((obj) => {
+      const spanMsg = document.createElement('span');
+      spanMsg.className = obj.class;
+      spanMsg.innerHTML = obj.text;
+      this.messagePlace.appendChild(spanMsg);
+    });
+  },
+  clearMessage() {
+    this.messagePlace.innerText = '';
+  },
+  initialization() {
+    Messages.push(Notes.init());
+    this.showMessage();
+  },
 };
+
+UI.initialization();
+
+UI.btnAddNotes.addEventListener('click', (event) => {
+  event.preventDefault();
+  const newNote = Notes.addNotes(UI.inputTitle, UI.inputBody);
+  Messages.push(newNote);
+
+});
