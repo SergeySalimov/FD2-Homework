@@ -15,25 +15,25 @@ textarea, button, ul {
 }
 
 #messages span {
-    font-weight: 500;
+    font-weight: bolder;
     display: block;
-    color: white;
+    background-color: #e7e7e7;
 }
 
 .success {
-    background-color: green;
+    color: green;
 }
 
 .warning {
-    background-color: orange;
+    color: orange;
 }
 
 .info {
-    background-color: darkcyan;
+    color: darkcyan;
 }
 
 .danger {
-    background-color: red;
+    color: red;
 }
 
 ul li {
