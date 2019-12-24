@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 const Notes = ((function () {
   const OBJECT_NAME = 'notes';
   const OBJECT_UNDEFINED = {
@@ -14,7 +13,7 @@ const Notes = ((function () {
   const OBJECT_NO_TITLE = {
     error: true,
     class: 'warning',
-    text: 'Object Notes title is empty or no valid',
+    text: 'Title of note is empty or no valid',
   };
   let objNotes;
 
@@ -97,10 +96,9 @@ const Notes = ((function () {
     if (objNotes === undefined) return OBJECT_UNDEFINED;
     if (objNotes.length === 0) return OBJECT_NO_DATA;
     for (const item of objNotes) if (item.title === delTitle) {
-      const delNotes = objNotes.splice(objNotes.indexOf(delTitle), 1);
+      const delNotes = objNotes.splice(objNotes.indexOf(item), 1);
       saveData(objNotes);
       return {
-
         class: 'danger',
         text: 'Note was deleted',
         ...delNotes,
@@ -203,51 +201,53 @@ const UI = {
       title: obj.title,
       body: obj.body,
     };
-    this.clearNotes();
     this.outputPlace.append(this.createNoteHTML(noteToDisp, full));
   },
+  renderArrOfTitles(arr) {
+    arr.forEach((titleToDisplay) => {
+      const objTemp = { title: titleToDisplay };
+      this.showNoteOnDisplay(objTemp, false);
+    });
+  },
+  displayMessage(obj) {
+    Messages.push(obj);
+    this.showMessage();
+  },
 };
-
-function displayMessage(obj) {
-  Messages.push(obj);
-  UI.showMessage();
-}
 
 UI.initialization();
 
 UI.btnAddNotes.addEventListener('click', (event) => {
   event.preventDefault();
+  UI.clearNotes();
   const newNote = Notes.addNotes(UI.inputTitle.value, UI.inputBody.value);
-  displayMessage(newNote);
+  UI.displayMessage(newNote);
   if (!newNote.error) UI.clearUI();
 });
 
 UI.btnShowNote.addEventListener('click', (event) => {
   event.preventDefault();
   const shwNote = Notes.showNote(UI.inputTitle.value);
-  displayMessage(shwNote);
+  UI.displayMessage(shwNote);
+  UI.clearUI();
   if (!shwNote.error) {
+    UI.clearNotes();
     UI.showNoteOnDisplay(shwNote);
-    UI.clearUI();
   }
 });
 
 UI.btnShowAllNotes.addEventListener('click', (event) => {
   event.preventDefault();
   const shwAll = Notes.showAll();
-  displayMessage(shwAll);
+  UI.displayMessage(shwAll);
   UI.clearNotes();
-  // shwAll.arr.forEach((titleToDisplay) => {
-  //   let objShort = { title: titleToDisplay };
-  //
-  // });
+  UI.renderArrOfTitles(shwAll.arr);
 });
 
 UI.btnDelNotes.addEventListener('click', (event) => {
   event.preventDefault();
+  UI.clearNotes();
   const delNote = Notes.delNote(UI.inputTitle.value);
-  displayMessage(delNote);
-  if (!delNote.error) {
-    UI.clearUI();
-  }
+  UI.displayMessage(delNote);
+  if (!delNote.error) UI.clearUI();
 });
