@@ -6,12 +6,17 @@ textarea, button, ul {
     margin-top: 3px;
 }
 
-span::before {
+#messages span::before {
     content: ":";
+}
+
+#output span {
+    padding-bottom: 5px;
 }
 
 span {
     font-weight: bold;
+    display: block;
 }
 
 .success {
@@ -28,4 +33,20 @@ span {
 
 .danger {
     color: darkred;
+}
+
+ul li {
+    display: inline-block;
+    border: black 1px solid;
+    border-radius: 5px;
+    margin: 3px 7px;
+    padding: 5px 9px;
+}
+
+ul li > span {
+    text-align: center;
+}
+
+ul li > div {
+    text-align: left;
 }

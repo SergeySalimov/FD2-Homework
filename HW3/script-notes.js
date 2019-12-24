@@ -11,6 +11,11 @@ const Notes = ((function () {
     class: 'warning',
     text: 'Object Notes is empty. Use Notes.addNotes();',
   };
+  const OBJECT_NO_TITLE = {
+    error: true,
+    class: 'warning',
+    text: 'Object Notes title is empty or no valid',
+  };
   let objNotes;
 
   const initNotes = () => {
@@ -56,6 +61,7 @@ const Notes = ((function () {
 
   const addNoteToObject = (addTitle, addBody) => {
     if (objNotes === undefined) return OBJECT_UNDEFINED;
+    if (!addTitle) return OBJECT_NO_TITLE;
     for (const item of objNotes) if (item.title === addTitle) return {
       error: true,
       class: 'warning',
@@ -96,7 +102,7 @@ const Notes = ((function () {
       return {
 
         class: 'danger',
-        text: 'Tilte was deleted',
+        text: 'Note was deleted',
         ...delNotes,
       };
     }
@@ -136,12 +142,8 @@ const Messages = ((function () {
     arrOfMessages.push(newObj);
     return true;
   };
-
-  const getMessagesFromArrOfMessages = () => {
-    console.log(arrOfMessages);
-    // return last 5 messages
-    return arrOfMessages.slice(-5);
-  };
+  // return last 5 messages
+  const getMessagesFromArrOfMessages = () => arrOfMessages.slice(-5);
 
   return {
     push(obj) {
@@ -151,7 +153,6 @@ const Messages = ((function () {
       return getMessagesFromArrOfMessages();
     },
   };
-
 })());
 
 const UI = {
@@ -178,15 +179,75 @@ const UI = {
   },
   initialization() {
     Messages.push(Notes.init());
-    this.showMessage();
+    UI.showMessage();
+  },
+  clearUI() {
+    this.inputTitle.value = '';
+    this.inputBody.value = '';
+  },
+  clearNotes() {
+    this.outputPlace.innerText = '';
+  },
+  createNoteHTML(obj, full = true) {
+    const newNote = document.createElement('li');
+    const newNoteTitle = document.createElement('span');
+    newNoteTitle.innerHTML = obj.title;
+    const newNoteBody = document.createElement('pre');
+    newNoteBody.innerHTML = obj.body;
+    newNote.appendChild(newNoteTitle);
+    if (full) newNote.appendChild(newNoteBody);
+    return newNote;
+  },
+  showNoteOnDisplay(obj, full = true) {
+    const noteToDisp = {
+      title: obj.title,
+      body: obj.body,
+    };
+    this.clearNotes();
+    this.outputPlace.append(this.createNoteHTML(noteToDisp, full));
   },
 };
+
+function displayMessage(obj) {
+  Messages.push(obj);
+  UI.showMessage();
+}
 
 UI.initialization();
 
 UI.btnAddNotes.addEventListener('click', (event) => {
   event.preventDefault();
-  const newNote = Notes.addNotes(UI.inputTitle, UI.inputBody);
-  Messages.push(newNote);
+  const newNote = Notes.addNotes(UI.inputTitle.value, UI.inputBody.value);
+  displayMessage(newNote);
+  if (!newNote.error) UI.clearUI();
+});
 
+UI.btnShowNote.addEventListener('click', (event) => {
+  event.preventDefault();
+  const shwNote = Notes.showNote(UI.inputTitle.value);
+  displayMessage(shwNote);
+  if (!shwNote.error) {
+    UI.showNoteOnDisplay(shwNote);
+    UI.clearUI();
+  }
+});
+
+UI.btnShowAllNotes.addEventListener('click', (event) => {
+  event.preventDefault();
+  const shwAll = Notes.showAll();
+  displayMessage(shwAll);
+  UI.clearNotes();
+  // shwAll.arr.forEach((titleToDisplay) => {
+  //   let objShort = { title: titleToDisplay };
+  //
+  // });
+});
+
+UI.btnDelNotes.addEventListener('click', (event) => {
+  event.preventDefault();
+  const delNote = Notes.delNote(UI.inputTitle.value);
+  displayMessage(delNote);
+  if (!delNote.error) {
+    UI.clearUI();
+  }
 });
