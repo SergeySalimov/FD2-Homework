@@ -31,7 +31,7 @@ const Notes = ((function () {
       class: 'info',
       text: 'No saved data in localStorage',
     };
-  }
+  };
 
   const saveData = (obj) => {
     const data = [...obj];
@@ -151,102 +151,3 @@ const Messages = ((function () {
     },
   };
 })());
-
-const UI = {
-  btnAddNotes: document.getElementById('add-notes'),
-  btnShowNote: document.getElementById('show-note'),
-  btnShowAllNotes: document.getElementById('show-all-notes'),
-  btnDelNotes: document.getElementById('del-notes'),
-  inputTitle: document.getElementById('card-title'),
-  inputBody: document.getElementById('card-body'),
-  messagePlace: document.getElementById('messages'),
-  outputPlace: document.getElementById('output'),
-  showMessage() {
-    this.clearMessage();
-    const stackOfMsg = Messages.get();
-    stackOfMsg.forEach((obj) => {
-      const spanMsg = document.createElement('span');
-      spanMsg.className = obj.class;
-      spanMsg.innerHTML = obj.text;
-      this.messagePlace.appendChild(spanMsg);
-    });
-  },
-  clearMessage() {
-    this.messagePlace.innerText = '';
-  },
-  initialization() {
-    Messages.push(Notes.init());
-    UI.showMessage();
-  },
-  clearUI() {
-    this.inputTitle.value = '';
-    this.inputBody.value = '';
-  },
-  clearNotes() {
-    this.outputPlace.innerText = '';
-  },
-  createNoteHTML(obj, full = true) {
-    const newNote = document.createElement('li');
-    const newNoteTitle = document.createElement('span');
-    newNoteTitle.innerHTML = obj.title;
-    const newNoteBody = document.createElement('pre');
-    newNoteBody.innerHTML = obj.body;
-    newNote.appendChild(newNoteTitle);
-    if (full) newNote.appendChild(newNoteBody);
-    return newNote;
-  },
-  showNoteOnDisplay(obj, full = true) {
-    const noteToDisp = {
-      title: obj.title,
-      body: obj.body,
-    };
-    this.outputPlace.append(this.createNoteHTML(noteToDisp, full));
-  },
-  renderArrOfTitles(arr) {
-    arr.forEach((titleToDisplay) => {
-      const objTemp = { title: titleToDisplay };
-      this.showNoteOnDisplay(objTemp, false);
-    });
-  },
-  displayMessage(obj) {
-    Messages.push(obj);
-    this.showMessage();
-  },
-};
-
-UI.initialization();
-
-UI.btnAddNotes.addEventListener('click', (event) => {
-  event.preventDefault();
-  UI.clearNotes();
-  const newNote = Notes.addNotes(UI.inputTitle.value, UI.inputBody.value);
-  UI.displayMessage(newNote);
-  if (!newNote.error) UI.clearUI();
-});
-
-UI.btnShowNote.addEventListener('click', (event) => {
-  event.preventDefault();
-  const shwNote = Notes.showNote(UI.inputTitle.value);
-  UI.displayMessage(shwNote);
-  UI.clearUI();
-  if (!shwNote.error) {
-    UI.clearNotes();
-    UI.showNoteOnDisplay(shwNote);
-  }
-});
-
-UI.btnShowAllNotes.addEventListener('click', (event) => {
-  event.preventDefault();
-  const shwAll = Notes.showAll();
-  UI.displayMessage(shwAll);
-  UI.clearNotes();
-  UI.renderArrOfTitles(shwAll.arr);
-});
-
-UI.btnDelNotes.addEventListener('click', (event) => {
-  event.preventDefault();
-  UI.clearNotes();
-  const delNote = Notes.delNote(UI.inputTitle.value);
-  UI.displayMessage(delNote);
-  if (!delNote.error) UI.clearUI();
-});
