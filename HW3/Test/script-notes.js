@@ -26,6 +26,7 @@ const Notes = ((function () {
         text: 'Loaded notes from localStorage',
       };
     }
+    objNotes = [];
     return {
       error: true,
       class: 'info',
