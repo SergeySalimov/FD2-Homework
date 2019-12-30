@@ -69,7 +69,20 @@ body {
 .btn-secondary:hover details,
 .btn-outline-success:hover details,
 .btn-outline-success:hover h5 i {
-    color: yellow;
+     color: yellow;
+ }
+
+pre {
+    font-family: monospace;
+}
+
+.btn-secondary:hover details pre,
+.btn-outline-dark:hover details pre {
+    color: #3deb36;
+}
+
+.btn-secondary details pre {
+    color: darkorange;
 }
 
 .btn-outline-success details,
