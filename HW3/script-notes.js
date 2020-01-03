@@ -85,9 +85,14 @@ const Notes = ((function () {
     localStorage.setItem(OBJECT_NAME, JSON.stringify(data));
   };
 
-  const addNoteToObject = (addTitle, addBody) => {
+  const validateObj = () => {
     if (objNotes === undefined) return MSG.objUndefined;
-    if (!addTitle) return MSG.objHaveNoTitle;
+    if (objNotes.length === 0) return MSG.objHaveNoData;
+    return { error: false };
+  };
+
+  const addNoteToObject = (addTitle, addBody) => {
+    if (validateObj().error) return validateObj();
     // eslint-disable-next-line max-len,no-restricted-syntax
     for (const item of objNotes) if (item.title === addTitle) return MSG.objHaveNoteWithSameTitle;
     const newNotes = {
@@ -97,12 +102,6 @@ const Notes = ((function () {
     objNotes.push(newNotes);
     saveData(objNotes);
     return MSG.noteAdded;
-  };
-
-  const validateObj = () => {
-    if (objNotes === undefined) return MSG.objUndefined;
-    if (objNotes.length === 0) return MSG.objHaveNoData;
-    return { error: false };
   };
 
   const showNoteByTitle = (newTitle) => {
