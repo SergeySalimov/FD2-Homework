@@ -99,9 +99,14 @@ const Notes = ((function () {
     return MSG.noteAdded;
   };
 
-  const showNoteByTitle = (newTitle) => {
+  const validateObj = () => {
     if (objNotes === undefined) return MSG.objUndefined;
     if (objNotes.length === 0) return MSG.objHaveNoData;
+    return { error: false };
+  };
+
+  const showNoteByTitle = (newTitle) => {
+    if (validateObj().error) return validateObj();
     if (!newTitle) return MSG.objHaveNoValidTitle;
     // eslint-disable-next-line no-restricted-syntax
     for (const item of objNotes) {
@@ -117,8 +122,7 @@ const Notes = ((function () {
   };
 
   const showAllTitlesOfObject = () => {
-    if (objNotes === undefined) return MSG.objUndefined;
-    if (objNotes.length === 0) return MSG.objHaveNoData;
+    if (validateObj().error) return validateObj();
     const arrNewTitles = [];
     // eslint-disable-next-line no-restricted-syntax
     for (const item of objNotes) arrNewTitles.push(item.title);
@@ -129,8 +133,7 @@ const Notes = ((function () {
   };
 
   const delNoteByTitleFromObject = (delTitle) => {
-    if (objNotes === undefined) return MSG.objUndefined;
-    if (objNotes.length === 0) return MSG.objHaveNoData;
+    if (validateObj().error) return validateObj();
     // eslint-disable-next-line no-restricted-syntax
     for (const item of objNotes) {
       if (item.title === delTitle) {
