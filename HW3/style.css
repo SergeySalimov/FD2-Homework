@@ -1,0 +1,59 @@
+body {
+    font-family: monospace;
+}
+
+textarea, button, ul {
+    margin-top: 7px;
+}
+
+#messages span::before {
+    content: ":";
+}
+
+#output span {
+    padding-bottom: 5px;
+}
+
+#messages span {
+    font-weight: bolder;
+    display: block;
+    background-color: #e7e7e7;
+}
+
+.success {
+    color: green;
+}
+
+.warning {
+    color: orange;
+}
+
+.info {
+    color: darkcyan;
+}
+
+.danger {
+    color: red;
+}
+
+ul li {
+    display: inline-block;
+    border: black 1px solid;
+    border-radius: 5px;
+    margin: 3px 7px;
+    padding: 5px 9px;
+}
+
+ul li > span {
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+ul li > div {
+    text-align: left;
+}
+
+button {
+    /*border-radius: 3px;*/
+    box-shadow: darkgrey 3px 3px 4px;
+}
