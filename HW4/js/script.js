@@ -26,10 +26,9 @@ function eventListener() {
   ui.task2InterfaceBtn.addEventListener('click', (event) => {
     event.preventDefault();
     const birthDay = ui.inputBirthday.value;
-    const dd = ui.calcDaysToBirthday(birthDay);
-    const txt2 = ' ' + ui.getNumWordBySwitch(dd, 'день', 'дня', 'дней');
+    const daysToBirthday = ui.calcDaysToBirthday(birthDay);
     // eslint-disable-next-line max-len
-    ui.showText(dd, 'До вашего дня рождения ', txt2);
+    ui.showText(daysToBirthday.diffInDays, 'До вашего дня рождения ', daysToBirthday.txt2);
   });
 }
 

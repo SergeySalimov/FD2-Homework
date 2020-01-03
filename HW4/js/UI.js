@@ -39,21 +39,7 @@ UI.prototype.showText = function (number, txt1 = 'До конца дня ост�
   this.output.innerText = txt1 + number + txt2;
 };
 
-UI.prototype.calcDaysToBirthday = function (birthDay) {
-  const d1 = new Date(birthDay);
-  const d2 = new Date();
-  // время скорректировано на +1 час
-  d2.setHours(d2.getHours() + 1);
-  // eslint-disable-next-line max-len
-  d1.setHours(d2.getHours(), d2.getMinutes(), d2.getSeconds(), d2.getMilliseconds());
-  // eslint-disable-next-line max-len
-  if (d1.setFullYear(d2.getFullYear()) < d2) d1.setFullYear(d2.getFullYear() + 1);
-  const diff = d1 - d2;
-  const diffInDays = Math.ceil(diff / (1000 * 3600 * 24));
-  return diffInDays;
-};
-
-UI.prototype.getNumWordBySwitch = function (num, wrd1, wrd2, wrd3) {
+function getNumWordBySwitch(num, wrd1, wrd2, wrd3) {
   const dd = num % 100;
   const d = dd % 10;
   // eslint-disable-next-line default-case
@@ -75,3 +61,22 @@ UI.prototype.getNumWordBySwitch = function (num, wrd1, wrd2, wrd3) {
       return wrd3;
   }
 }
+
+UI.prototype.calcDaysToBirthday = function (birthDay) {
+  const d1 = new Date(birthDay);
+  const d2 = new Date();
+  // время скорректировано на +1 час
+  d2.setHours(d2.getHours() + 1);
+  // eslint-disable-next-line max-len
+  d1.setHours(d2.getHours(), d2.getMinutes(), d2.getSeconds(), d2.getMilliseconds());
+  // eslint-disable-next-line max-len
+  if (d1.setFullYear(d2.getFullYear()) < d2) d1.setFullYear(d2.getFullYear() + 1);
+  const diff = d1 - d2;
+  const diffInDays = Math.ceil(diff / (1000 * 3600 * 24));
+  const txt2 = ' ' + getNumWordBySwitch(diffInDays, 'день', 'дня', 'дней');
+  return {
+    diffInDays,
+    txt2,
+  };
+  // return diffInDays;
+};
