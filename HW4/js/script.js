@@ -11,13 +11,13 @@ function eventListener() {
     ui.clearForm();
   });
 
-  ui.btnTask1.addEventListener('click', (event) => {
+  ui.task1Btn.addEventListener('click', (event) => {
     event.preventDefault();
     ui.clearForm();
     ui.showText(ui.calcSeconds());
   });
 
-  ui.btnTask2.addEventListener('click', (event) => {
+  ui.task2Btn.addEventListener('click', (event) => {
     event.preventDefault();
     ui.clearForm();
     ui.task2Interface.classList.remove('hide');
@@ -25,10 +25,34 @@ function eventListener() {
 
   ui.task2InterfaceBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    const birthDay = ui.inputBirthday.value;
+    const birthDay = ui.task2InputBirthday.value;
     const daysToBirthday = ui.calcDaysToBirthday(birthDay);
     // eslint-disable-next-line max-len
     ui.showText(daysToBirthday.diffInDays, 'До вашего дня рождения ', daysToBirthday.txt2);
+  });
+
+  ui.task3Btn.addEventListener('click', (event) => {
+    event.preventDefault();
+    ui.clearForm();
+    ui.task3Interface.classList.remove('hide');
+  });
+
+  ui.task3InterfaceBtnRem.addEventListener('click', (event) => {
+    event.preventDefault();
+    ui.clearFilter();
+  });
+
+  ui.task3InterfaceBtnAdd.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (ui.task3InputFilter.value) {
+      ui.addFilter(ui.task3InputFilter.value);
+      ui.task3InputFilter.value = '';
+    }
+  });
+
+  ui.task3InterfaceBtnFilter.addEventListener('click', (event) => {
+    event.preventDefault();
+    ui.filterField();
   });
 }
 
