@@ -47,7 +47,8 @@ function usersSort(param1, param2 = 'id', param3 = 'asc') {
   return sortedUsers;
 }
 
-console.log(usersSort(users));
+console.log(usersSort(users, 'id', 'desc'));
+console.log(usersSort(users, 'name', 'desc'));
 
 
 function eventListener() {
@@ -112,6 +113,7 @@ function eventListener() {
   ui.task4Btn.addEventListener('click', (event) => {
     event.preventDefault();
     ui.clearForm();
+    ui.task4Interface.classList.remove('hide');
     ui.output.innerText = usersSort;
   });
 }
