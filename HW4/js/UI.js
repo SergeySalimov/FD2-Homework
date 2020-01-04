@@ -18,12 +18,14 @@ function UI() {
   this.task3FilterField = document.getElementById('field-to-filter');
   this.task3Filter = [];
   this.task3FilterReplacer = '***';
+  this.task4Interface = document.getElementById('task4-interface');
 }
 
 UI.prototype.clearForm = function () {
   this.output.innerText = '';
   this.task2Interface.classList.add('hide');
   this.task3Interface.classList.add('hide');
+  this.task4Interface.classList.add('hide');
 };
 
 UI.prototype.displayCurrentTime = function () {
@@ -108,7 +110,6 @@ UI.prototype.filterField = function () {
   if (this.task3Filter.length > 0) {
     this.task3Filter.forEach((filterWrd) => {
       const regex = new RegExp(filterWrd, 'gi');
-      console.log(regex);
       textToFilter = textToFilter.replace(regex, this.task3FilterReplacer);
     });
     this.task3FilterField.innerText = textToFilter;
