@@ -27,7 +27,7 @@ const users = [Vania, Alex, Vasia, Masha, Igor];
 
 console.log(users);
 
-function usersSort(param1, param2 = 'dob', param3 = 'asc') {
+function usersSort(param1, param2 = 'id', param3 = 'asc') {
   const sortedUsers = [...param1];
   let flag = 1;
   if (param3 === 'desc') flag = -1;
@@ -107,6 +107,12 @@ function eventListener() {
   ui.task3InterfaceBtnFilter.addEventListener('click', (event) => {
     event.preventDefault();
     ui.filterField();
+  });
+
+  ui.task4Btn.addEventListener('click', (event) => {
+    event.preventDefault();
+    ui.clearForm();
+    ui.output.innerText = usersSort;
   });
 }
 
