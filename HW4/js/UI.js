@@ -17,6 +17,7 @@ function UI() {
   this.task3FilterWordsOutput = document.getElementById('filter-words');
   this.task3FilterField = document.getElementById('field-to-filter');
   this.task3Filter = [];
+  this.task3FilterReplacer = '***';
 }
 
 UI.prototype.clearForm = function () {
@@ -38,7 +39,7 @@ UI.prototype.calcSeconds = function () {
   // время скорректировано на +1 час
   // eslint-disable-next-line max-len,no-undef
   const timeNowArr = (moment().add(1, 'hour').format('HH.mm.ss')).split('.')
-      .map((n) => parseInt(n, 10));
+    .map((n) => parseInt(n, 10));
   // eslint-disable-next-line max-len
   return ((23 - timeNowArr[0]) * 60 + (59 - timeNowArr[1])) * 60 + (60 - timeNowArr[2]);
 };
@@ -103,7 +104,13 @@ UI.prototype.addFilter = function (wrd) {
 };
 
 UI.prototype.filterField = function () {
-  const textToFilter = this.task3FilterField.innerText;
-  console.log(textToFilter);
-  console.log(this.task3Filter);
+  let textToFilter = this.task3FilterField.innerText;
+  if (this.task3Filter.length > 0) {
+    this.task3Filter.forEach((filterWrd) => {
+      const regex = new RegExp(filterWrd, 'gi');
+      console.log(regex);
+      textToFilter = textToFilter.replace(regex, this.task3FilterReplacer);
+    });
+    this.task3FilterField.innerText = textToFilter;
+  }
 };
