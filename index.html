@@ -99,11 +99,11 @@
       <div class="mx-1 my-1" id="HW3">
         <a href="homework3.html"
            target="_blank"
-           class="btn btn-link btn-block btn-outline-dark alight"
+           class="btn btn-link btn-block btn-outline-success alight"
            role="button"
            aria-disabled="false">
           <label for="HW3">
-            <h5 class="text-left text-sm-center"><i class="icon-wrench pr-1"></i>Home work #3</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-ok-circled pr-1"></i>Home work #3</h5>
             <details>
               <summary>Task(s):</summary>
               <ol>
@@ -129,25 +129,33 @@
     <!--Home task 4-->
     <div class="col-xs-12 col-md-6 col-lg-4">
       <div class="mx-1 my-1" id="HW4">
-        <a href="#"
+        <a href="homework4.html"
            target="_blank"
-           class="btn btn-link btn-block btn-outline-dark disabled"
+           class="btn btn-link btn-block btn-outline-dark alight"
            role="button"
-           aria-disabled="true">
+           aria-disabled="false">
           <label for="HW4">
-            <h5 class="text-left text-sm-center"><i class="icon-lock pr-1"></i>Home work #4</h5>
+            <h5 class="text-left text-sm-center"><i class="icon-wrench pr-1"></i>Home work #4</h5>
             <details>
               <summary>Task(s):</summary>
-              Разработать проект Notes. <br/>
-              Ваша программа должна уметь работать со списком заметок. <br/>
-              Каждая заметка должна состояить из следующих полей:
               <ol>
-                <li>title: содержит заголовок заметки - должен быть уникальный</li>
-                <li>body: текст заметки</li>
-              </ol>
+                <li>Выведите на экран количество секунд, которое осталось до конца дня.</li>
+                <li>Создайте инпут, в который пользователь вводит дату своего рождения в формате '2014-12-31'
+                  (с конкретным годом). Вывести сколько дней осталось до его дня рождения.</li>
+                <li>Написать функцию фильтр запрещенных слов. Слова на ваш выбор.</li>
+                <li>Есть массив объетов Users = [{id: '1', name: 'Name', dob: '1999-01-01'}];<br/>
+                  Написать чистую функию которая получает массив Users, поле сортировки, направление сортировки (убывание, возврастание)
+                  и возвращает отсортированный массив.
+                <pre> param1 = Users
+       param2 = 'id' | 'name' | 'dob'
+       param3 = 'asc' | 'desc'
 
-              Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии
-              для предварительного просмотра макета и визуальных макетах.
+       function usersSort(param1, param2, param3)
+               {... return users }
+
+       usersSort(users, 'id', 'desc')
+       usersSort(users, 'name', 'desc')</pre></li>
+              </ol>
             </details>
           </label>
         </a>

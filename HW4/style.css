@@ -1,0 +1,21 @@
+h1 {
+    padding-left: 50px;
+    margin-top: 20px;
+}
+
+.btn-div, #output, .mar-left {
+    margin-left: 20px;
+}
+
+.mar-top {
+    margin-top: 5px;
+}
+
+.cur {
+    margin-left: 25px;
+    margin-right: 10px;
+}
+
+.hide {
+    display: none;
+}
