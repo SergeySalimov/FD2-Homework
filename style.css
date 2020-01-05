@@ -97,8 +97,26 @@ details {
 }
 
 .disabled details {
-    color:grey;
+    color: grey;
 }
+
+#current-time,
+#current-date {
+    color: white;
+}
+
+#current-time {
+    position: absolute;
+    top: 90px;
+    right: 11px;
+}
+
+#current-date {
+    position: absolute;
+    top: 105px;
+    right: 2px;
+}
+
 
 summary {
     font-size: 0.9rem;
