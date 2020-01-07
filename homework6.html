@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework-6</title>
+  <meta name="description" content="Homework-4"/>
+  <meta name="author" content="Sergey Salimov"/>
+  <meta name="keywords" content="home work, home, work, homework"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="font/css/fontello.css">
+  <!--  <link rel="stylesheet" href="font/css/animation.css">-->
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center mb-4 mt-2 py-3 px-2 header header-for-homework">
+      <h1>Home work #6</h1>
+      <h3>by Sergey Salimau</h3>
+      <span id="current-date"></span>
+      <span id="current-time"></span>
+      <a class="btn btn-outline-light btn-sm btn-back"
+         href="index.html"
+         target="_parent"
+         role="button">
+        <i class="icon-angle-circled-left">Back</i>
+      </a>
+      <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-primary" id="btn-blue"></button>
+          <button type="button" class="btn btn-success" id="btn-green"></button>
+          <button type="button" class="btn btn-warning" id="btn-yellow"></button>
+        </div>
+      </div>
+    </div>
+
+    <!--classes-->
+    <!--btn-outline-dark + alight (подсветка) for work; btn-success for done; disabled + aria-disabled="true" for lock-->
+    <!--icons-->
+    <!--icon-wrench for work; icon-ok-circled for done; icon-lock for locked hometask-->
+    <!--Task 1-->
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="mx-1 my-1" id="HW6-HT1">
+        <a href="#"
+           target="_blank"
+           class="btn btn-link btn-block btn-secondary alight"
+           role="button"
+           aria-disabled="false">
+          <label for="HW6-HT1">
+            <h5><i class="icon-wrench pr-1"></i>Home task #1</h5>
+            <p>Выведите на экран количество секунд, которое осталось до конца дня.</p>
+          </label>
+        </a>
+      </div>
+    </div>
+    <!--Task 2-->
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="mx-1 my-1" id="HW6-HT2">
+        <a href="#"
+           target="_blank"
+           class="btn btn-link btn-block btn-secondary alight"
+           role="button"
+           aria-disabled="false">
+          <label for="HW6-HT2">
+            <h5><i class="icon-wrench pr-1"></i>Home task #2</h5>
+            <p>Создайте инпут, в который пользователь вводит дату своего рождения в формате '2014-12-31'
+              (с конкретным годом). Вывести сколько дней осталось до его дня рождения.</p>
+          </label>
+        </a>
+      </div>
+    </div>
+    <!--Task 3-->
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="mx-1 my-1" id="HW6-HT3">
+        <a href="#"
+           target="_blank"
+           class="btn btn-link btn-block btn-secondary alight"
+           role="button"
+           aria-disabled="false">
+          <label for="HW6-HT3">
+            <h5><i class="icon-wrench pr-1"></i>Home task #3</h5>
+            <p>Написать функцию фильтр запрещенных слов. Слова на ваш выбор.</p>
+          </label>
+        </a>
+      </div>
+    </div>
+    <!--Task 4-->
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="mx-1 my-1" id="HW6-HT4">
+        <a href="#"
+           target="_blank"
+           class="btn btn-link btn-block btn-secondary alight"
+           role="button"
+           aria-disabled="false">
+          <label for="HW6-HT4">
+            <h5><i class="icon-wrench pr-1"></i>Home task #4</h5>
+            <details>
+              <summary>Есть массив объетов </summary>
+              Users = [{id: '1', name: 'Name', dob: '1999-01-01'}];<br/>
+              Написать чистую функию которая получает массив Users, поле сортировки, направление сортировки
+              (убывание, возврастание) и возвращает отсортированный массив.
+                  <pre> param1 = Users
+       param2 = 'id' | 'name' | 'dob'
+       param3 = 'asc' | 'desc'
+
+       function usersSort(param1,
+                    param2, param3)
+               {... return users }
+
+       usersSort(users, 'id', 'desc')
+       usersSort(users, 'name', 'desc')</pre>
+            </details>
+          </label>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
