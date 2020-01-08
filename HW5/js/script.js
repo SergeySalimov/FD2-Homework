@@ -15,6 +15,7 @@ const ui = {
   tsk1TimeInput: document.getElementById('input-time'),
   tsk1EnterBtn: document.getElementById('hw5tsk1-btn'),
   tsk1Form: document.getElementById('tsk1-form'),
+  tsk1FormClearInput: document.getElementById('clear-input'),
 };
 
 function eventListener() {
@@ -39,9 +40,15 @@ function eventListener() {
   });
   ui.tsk1Form.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log('111');
-    let timeToCount = ui.tsk1TimeInput.value;
+    const timeToCount = ui.tsk1TimeInput.value;
     console.log(timeToCount);
+  });
+  ui.tsk1FormClearInput.addEventListener('click', (event) => {
+    event.preventDefault();
+    const nmb = ui.tsk1TimeInput.value;
+    if (nmb < 0 || nmb > 60) ui.tsk1Form.reset();
+    // const str = ui.tsk1TimeInput.oninvalid;
+    // console.log(str);
   });
 }
 
