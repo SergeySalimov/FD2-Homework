@@ -20,12 +20,20 @@ h1 {
     display: none;
 }
 
+input:invalid {
+    border-color: red;
+}
+
 input:invalid+span:after {
     content: '✖';
     color: red;
     padding-left: 5px;
     padding-right: 15px;
-;
+}
+
+input:invalid+span:hover {
+    cursor: pointer;
+    font-weight: bold;
 }
 
 input:valid+span:after {
