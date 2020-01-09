@@ -16,7 +16,7 @@ function CustomTimer(renderEl, time = 30) {
     if (!pauseFlag) {
       clearInterval(intervalId);
       pauseFlag = true;
-      return true;
+      return timeToCount;
     }
     this.start();
     pauseFlag = false;
