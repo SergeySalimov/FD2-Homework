@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>homework5</title>
   <link rel="stylesheet" href="style.css"/>
+  <link rel="shortcut icon" href="img/favicon.ico">
+
 </head>
 <body>
 <h1>Homework 5</h1>
@@ -26,17 +28,17 @@
     четное выбросить исключение и вывести консоль значение числа и сообщение об ошибке
     если число не четное вывести его в консоль с сообщением об успехе
     фунцию запускать каждую секунду на прояжении 20 секунд. затем прекратить выполнение</p>
+  <hr/>
 </div>
-<hr/>
 <div class="btn-div hide" id="hw5task1-interface">
   <form id="tsk1-form">
     <div>
-      <label for="input-time">Введите время для таймера от 0 до 60</label>
+      <label for="input-time">Введите время для таймера от 1 до 60</label>
       <input type="number"
              min="1"
              max="60"
              step="1"
-             value="60"
+             value="5"
              id="input-time">
       <span class="validity" id="clear-input"></span>
 
@@ -73,8 +75,17 @@
   <hr/>
 </div>
 <div id="output">
-  <!--  <p>Probe</p>-->
+<!--  <div class="timer-div">-->
+<!--    <span data-timerId="" class="timer-nmb">60</span>-->
+<!--    <span data-timerNmb="" class="timer-count">1</span>-->
+<!--    <button class="stop-start" data-btnId="1">Stop<br>Start</button>-->
+<!--  </div>-->
+
+
+
 </div>
+
+
 
 <script src="js/CustomTimer.js"></script>
 <script src="js/script.js"></script>

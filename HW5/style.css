@@ -43,3 +43,49 @@ input:valid+span:after {
     padding-left: 5px;
     padding-right: 15px;
 }
+
+.stop-start {
+    margin-left: 10px;
+    padding: 13px 13px;
+    border-radius: 37px;
+    box-shadow: 2px 1px 3px;
+    position: absolute;
+    top: 46px;
+    right: 13px;
+    background-color: darkseagreen;
+}
+
+.stop-start:focus {
+    outline: none;
+}
+
+.timer-div {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 80px 80px;
+    border: solid 3px black;
+    border-radius: 83px;
+    position: relative;
+    background-color: lightgrey;
+}
+
+.timer-nmb {
+    font-size: 50px;
+    font-weight: 800;
+    font-family: monospace;
+    position: absolute;
+    top: 48px;
+    left: 18px;
+    color: darkblue;
+}
+
+.timer-count {
+    font-size: 19px;
+    font-weight: 600;
+    font-family: monospace;
+    position: absolute;
+    top: 10px;
+    left: 80px;
+    color: darkred;
+}
