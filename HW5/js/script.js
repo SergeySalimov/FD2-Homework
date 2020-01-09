@@ -25,19 +25,31 @@ const ui = {
   },
   timerID: 1,
   timers: [],
+  toCurrentTimer(id) {
+    return document.getElementById(`timer-output${id}`);
+  },
 };
+
 
 function createHtmlForTimer(timerObj, placeToShow = ui.output) {
   const nmbOfTimer = timerObj.id;
   const timerCount = timerObj.time;
   const div = document.createElement('div');
   div.classList.add('timer-div');
-  div.innerHTML = `
+  div.innerHTML = `    
+    <span data-timerNmb="${nmbOfTimer}" class="timer-count">${nmbOfTimer} - ${timerCount}</span>
     <span data-timerId="${nmbOfTimer}" id="timer-output${nmbOfTimer}" class="timer-nmb">${timerCount}</span>
-    <span data-timerNmb="${nmbOfTimer}" class="timer-count">${nmbOfTimer}</span>
     <button class="stop-start" data-btnId="${nmbOfTimer}">Stop<br>Start</button>
   `;
   placeToShow.append(div);
+}
+
+function reStartTimer(id) {
+  ui.toCurrentTimer(id).innerText = ui.timers[id - 1].time;
+  // eslint-disable-next-line max-len
+  const newTimer = new CustomTimer(ui.toCurrentTimer(id), ui.timers[id - 1].time);
+  newTimer.start();
+  ui.timers[id - 1].pauseStart = newTimer;
 }
 
 function createTimer() {
@@ -46,9 +58,9 @@ function createTimer() {
     time: +ui.tsk1TimeInput.value,
   };
   createHtmlForTimer(timer);
-  const outputNew = document.getElementById(`timer-output${timer.id}`);
-  const newTimer = new CustomTimer(outputNew, timer.time);
+  const newTimer = new CustomTimer(ui.toCurrentTimer(timer.id), timer.time);
   newTimer.start();
+  timer.pauseStart = newTimer;
 
   ui.timers.push(timer);
   ui.timerID += 1;
@@ -82,6 +94,17 @@ function eventListener() {
   ui.tsk1FormClearInput.addEventListener('click', (event) => {
     event.preventDefault();
     if (ui.tsk1NmbCheck()) ui.tsk1Form.reset();
+  });
+  ui.output.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (event.target.classList.contains('stop-start')) {
+      const timerId = +event.target.dataset.btnid;
+      if (+ui.toCurrentTimer(timerId).innerText === 0) {
+        reStartTimer(timerId);
+      } else {
+        ui.timers[timerId - 1].pauseStart.pause();
+      }
+    }
   });
 }
 
