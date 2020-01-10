@@ -14,6 +14,9 @@ const ui = {
     this.output.innerHTML = '';
     this.timers = [];
     this.timerID = 1;
+    this.tsk2InputHeartBeat.classList.add('hide');
+    this.tsk2HeartOutputTimer.innerText = '';
+    this.flagForHeartbeat = false;
   },
   tsk1TimeInput: document.getElementById('input-time'),
   tsk1EnterBtn: document.getElementById('hw5tsk1-btn'),
@@ -28,8 +31,47 @@ const ui = {
   toCurrentTimer(id) {
     return document.getElementById(`timer-output${id}`);
   },
+  tsk2Heart: document.getElementById('heart'),
+  tsk2BtnStartHeart: document.getElementById('start-heart'),
+  tsk2HeartOutputTimer: document.getElementById('count-heart'),
+  tsk2InputHeartBeat: document.getElementById('input-heartbeat'),
+  tsk2InputHeartBeatCount: document.getElementById('input-heartbeat-count'),
+  // eslint-disable-next-line max-len
+  tsk2InputHeartBeatCountBtn: document.getElementById('input-heartbeat-count-btn'),
+  flagForHeartbeat: false,
+  tsk2StartTimer(time = 5) {
+    const newTimer = new CustomTimer(ui.tsk2HeartOutputTimer, time);
+    newTimer.start();
+  },
+  tsk2StartHeartBeatCount() {
+    this.output.innerText = 'ИЗМЕРЕНИЕ ПУЛЬСА ....';
+    this.tsk2HeartOutputTimer.innerText = '15';
+    this.tsk2Heart.classList.add('heart-beat');
+    this.tsk2StartTimer(14);
+  },
+  tsk2Measure() {
+    this.tsk2InputHeartBeat.classList.remove('hide');
+    this.tsk2HeartOutputTimer.innerText = 'все';
+    this.output.innerText = 'Время закончилось, введите количество ударов';
+    this.tsk2Heart.classList.remove('heart-beat');
+  },
+  tsk2StartWork() {
+    this.output.innerText = 'Отсчет начнется через ....';
+    this.tsk2StartTimer();
+    window.setTimeout(() => {
+      this.tsk2StartHeartBeatCount();
+    }, 6000);
+    window.setTimeout(() => {
+      this.tsk2Measure();
+    }, 21001);
+  },
+  tsk2Calculate() {
+    const heartBeat = +this.tsk2InputHeartBeatCount.value * 4;
+    this.tsk2InputHeartBeatCount.value = '';
+    this.output.innerText = `Ваш пульс равен ${heartBeat} уд. в минуту`;
+    this.tsk2HeartOutputTimer.innerText = heartBeat;
+  },
 };
-
 
 function createHtmlForTimer(timerObj, placeToShow = ui.output) {
   const nmbOfTimer = timerObj.id;
@@ -105,6 +147,17 @@ function eventListener() {
         ui.timers[timerId - 1].pauseStart.pause();
       }
     }
+  });
+  ui.tsk2BtnStartHeart.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (!ui.flagForHeartbeat) {
+      ui.tsk2StartWork();
+      ui.flagForHeartbeat = true;
+    }
+  });
+  ui.tsk2InputHeartBeatCountBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    ui.tsk2Calculate();
   });
 }
 
