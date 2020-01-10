@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>homework5</title>
+  <link rel="stylesheet" href="font/css/fontello.css">
   <link rel="stylesheet" href="style.css"/>
   <link rel="shortcut icon" href="img/favicon.ico">
 
@@ -55,10 +56,18 @@
 </div>
 
 <div class="btn-div hide" id="hw5task2-interface">
-  <span>2222 Введите время для таймера от 0 до 60</span>
-  <input type="number">
+  <i class="icon-heart-1 heart" id="heart"></i>
+  <h3>Измерение пульса</h3>
+  <p>Нажмите на старт и через 5 секунд начнется отсчет времени</p>
+  <p>После 15 секунд измерения введите количество ударов</p>
+  <button id="start-heart">Старт</button>
+  <span id="count-heart"></span>
 
-  <button>Ввод</button>
+
+  <div id="input-heartbeat" class="hide">
+  <input type="number" min="1" max="99" id="input-heartbeat-count">
+  <button id="input-heartbeat-count-btn">Ввод</button>
+  </div>
   <hr/>
 </div>
 
