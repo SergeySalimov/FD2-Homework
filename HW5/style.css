@@ -65,7 +65,7 @@ input:valid+span:after {
     margin: 5px 10px;
     padding: 80px 80px;
     border: solid 3px black;
-    border-radius: 83px;
+    border-radius: 80px;
     position: relative;
     background-color: lightgrey;
 }
@@ -86,6 +86,6 @@ input:valid+span:after {
     font-family: monospace;
     position: absolute;
     top: 10px;
-    left: 50px;
+    left: 45px;
     color: darkred;
 }
