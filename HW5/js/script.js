@@ -63,7 +63,7 @@ const ui = {
     }, 6000);
     window.setTimeout(() => {
       this.tsk2Measure();
-    }, 21001);
+    }, 21010);
   },
   tsk2Calculate() {
     const heartBeat = +this.tsk2InputHeartBeatCount.value * 4;
