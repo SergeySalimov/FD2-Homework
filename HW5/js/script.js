@@ -85,25 +85,26 @@ function ifEven(nmb) {
 }
 
 function MyError(message) {
-  this.name = 'MY ERROR: odd numbers is illegal today';
+  this.name = 'MY ERROR: even numbers is illegal today';
   this.message = message;
 }
 
 function line() {
-  console.log('======================================');
+  console.log('=======================================');
 }
 
 function task3Working() {
   let itr = 20;
-  console.log(`    Numbers checking: ${itr} attempt`);
+  console.log(`
+      Numbers checking: ${itr} attempt`);
   line();
   const intervalId = setInterval(() => {
     try {
       const nmb = random100();
-      if (ifEven(nmb)) {
-        console.log(`--------- Number ${nmb} is even. Success!`);
+      if (!ifEven(nmb)) {
+        console.log(`--------- Number ${nmb} is odd. Success! --`);
       } else {
-        throw new MyError(`--------- Number ${nmb} is odd ----------`);
+        throw new MyError(`--------- Number ${nmb} is even -----------`);
       }
     } catch (e) {
       console.log(e.name);
