@@ -17,6 +17,7 @@ const ui = {
     this.tsk2InputHeartBeat.classList.add('hide');
     this.tsk2HeartOutputTimer.innerText = '';
     this.flagForHeartbeat = false;
+    this.tsk3FlagWorking = false;
   },
   tsk1TimeInput: document.getElementById('input-time'),
   tsk1EnterBtn: document.getElementById('hw5tsk1-btn'),
@@ -71,7 +72,50 @@ const ui = {
     this.output.innerText = `Ваш пульс равен ${heartBeat} уд. в минуту`;
     this.tsk2HeartOutputTimer.innerText = heartBeat;
   },
+  tsk3Start: document.getElementById('tsk3-btn'),
+  tsk3FlagWorking: false,
 };
+
+function random100() {
+  return Math.round(Math.random() * 100);
+}
+
+function ifEven(nmb) {
+  return (nmb / 2) === Math.ceil(nmb / 2);
+}
+
+function MyError(message) {
+  this.name = 'MY ERROR: odd numbers is illegal today';
+  this.message = message;
+}
+
+function line() {
+  console.log('======================================');
+}
+
+function task3Working() {
+  let itr = 20;
+  console.log(`    Numbers checking: ${itr} attempt`);
+  line();
+  const intervalId = setInterval(() => {
+    try {
+      const nmb = random100();
+      if (ifEven(nmb)) {
+        console.log(`--------- Number ${nmb} is even. Success!`);
+      } else {
+        throw new MyError(`--------- Number ${nmb} is odd ----------`);
+      }
+    } catch (e) {
+      console.log(e.name);
+      console.log(e.message);
+    }
+    itr -= 1;
+    if (itr === 0) {
+      clearInterval(intervalId);
+      line();
+    }
+  }, 1000);
+}
 
 function createHtmlForTimer(timerObj, placeToShow = ui.output) {
   const nmbOfTimer = timerObj.id;
@@ -158,6 +202,13 @@ function eventListener() {
   ui.tsk2InputHeartBeatCountBtn.addEventListener('click', (event) => {
     event.preventDefault();
     ui.tsk2Calculate();
+  });
+  ui.tsk3Start.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (!ui.tsk3FlagWorking) {
+      task3Working();
+      ui.tsk3FlagWorking = true;
+    }
   });
 }
 
