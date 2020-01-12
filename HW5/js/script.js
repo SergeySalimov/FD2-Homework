@@ -85,12 +85,12 @@ function ifEven(nmb) {
 }
 
 function MyError(message) {
-  this.name = 'MY ERROR: even numbers is illegal today';
+  this.name = 'MY ERROR: Even numbers are illegal today';
   this.message = message;
 }
 
 function line() {
-  console.log('=======================================');
+  console.log('=========================================');
 }
 
 function task3Working() {
@@ -102,13 +102,14 @@ function task3Working() {
     try {
       const nmb = random100();
       if (!ifEven(nmb)) {
-        console.log(`--------- Number ${nmb} is odd. Success! --`);
+        // eslint-disable-next-line max-len
+        console.log('%c%s', 'background: lightgreen;', `---------- Number ${nmb} is odd. Success! ---`);
       } else {
-        throw new MyError(`--------- Number ${nmb} is even -----------`);
+        throw new MyError(`---------- Number ${nmb} is even ------------`);
       }
     } catch (e) {
-      console.log(e.name);
-      console.log(e.message);
+      console.error(e.name);
+      console.log('%c%s', 'background: lightgray;', e.message);
     }
     itr -= 1;
     if (itr === 0) {
