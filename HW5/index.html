@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>homework5</title>
+  <link rel="stylesheet" href="font/css/fontello.css">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+</head>
+<body>
+<h1>Homework 5</h1>
+<div class="btn-div">
+  <button id="hw5task1">Task 1</button>
+  <button id="hw5task2">Task 2</button>
+  <button id="hw5task3">Task 3</button>
+  <button id="hw5clear">Clear</button>
+  <p>Task1: Написать таймер обратного осчета с фунцией паузы (до 60 сек),
+    таймер должен быть функцией конструтором</p>
+  <p>Task2: Написать программу которая помогает измерить пульс: <br/>
+    Условия:<br/>
+    на странице находится три елемента поле для сообщений, поле ввода input + кнопка ввода, кнопка.
+    пользователь нажимает кнопку в поле для сообщения появляется информация: "Измерение начнется через 5,4,3,...(таймер)"<br/>
+    Измерение...<br/>
+    после этого идет отсчет 15 секунд
+    затем пользователь должен ввести количество ударов
+    в сообщении должен появиться результат userInput * 4</p>
+  <p>Task3: Написать функцию которая генерирует псевдослучайные целые числа если число
+    четное выбросить исключение и вывести консоль значение числа и сообщение об ошибке
+    если число не четное вывести его в консоль с сообщением об успехе
+    фунцию запускать каждую секунду на прояжении 20 секунд. затем прекратить выполнение</p>
+  <hr/>
+</div>
+
+<div class="btn-div hide" id="hw5task1-interface">
+  <form id="tsk1-form">
+    <div>
+      <label for="input-time">Введите время для таймера от 1 до 60</label>
+      <input type="number"
+             min="1"
+             max="60"
+             step="1"
+             value="30"
+             id="input-time">
+      <span class="validity" id="clear-input"></span>
+
+      <input type="submit" id="submit-btn">
+    </div>
+
+
+  </form>
+<!--  <span>Введите время для таймера от 0 до 60</span>-->
+
+<!--  <button id="hw5tsk1-btn">Ввод</button>-->
+  <hr/>
+</div>
+
+<div class="btn-div hide" id="hw5task2-interface">
+  <i class="icon-heart-1 heart" id="heart"></i>
+  <h3>Измерение пульса</h3>
+  <p>Нажмите на старт и через 5 секунд начнется отсчет времени</p>
+  <p>После 15 секунд измерения введите количество ударов</p>
+  <button id="start-heart">Старт</button>
+  <span id="count-heart"></span>
+
+
+  <div id="input-heartbeat" class="hide">
+  <input type="number" min="1" max="99" id="input-heartbeat-count">
+  <button id="input-heartbeat-count-btn">Ввод</button>
+  </div>
+  <hr/>
+</div>
+
+<div class="btn-div hide" id="hw5task3-interface">
+  <span>Вывод в консоль, для начала работы нажмите </span>
+  <button id="tsk3-btn">Пуск</button>
+  <hr/>
+</div>
+
+<div id="output">
+<!--  <div class="timer-div">-->
+<!--    <span data-timerId="" class="timer-nmb">60</span>-->
+<!--    <span data-timerNmb="" class="timer-count">1</span>-->
+<!--    <button class="stop-start" data-btnId="1">Stop<br>Start</button>-->
+<!--  </div>-->
+</div>
+
+<script src="js/CustomTimer.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

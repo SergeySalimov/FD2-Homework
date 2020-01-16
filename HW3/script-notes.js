@@ -92,7 +92,7 @@ const Notes = ((function () {
   };
 
   const addNoteToObject = (addTitle, addBody) => {
-    if (validateObj().error) return validateObj();
+    if (objNotes === undefined) return MSG.objUndefined;
     // eslint-disable-next-line max-len,no-restricted-syntax
     for (const item of objNotes) if (item.title === addTitle) return MSG.objHaveNoteWithSameTitle;
     const newNotes = {

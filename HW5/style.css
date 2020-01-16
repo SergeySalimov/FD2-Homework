@@ -1,0 +1,126 @@
+h1 {
+    padding-left: 50px;
+    margin-top: 20px;
+}
+
+.btn-div, #output, .mar-left {
+    margin-left: 20px;
+}
+
+.mar-top {
+    margin-top: 5px;
+}
+
+.cur {
+    margin-left: 25px;
+    margin-right: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input:invalid+span:after {
+    content: '✖';
+    color: red;
+    padding-left: 5px;
+    padding-right: 15px;
+}
+
+input:invalid+span:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input:valid+span:after {
+    content: '✓';
+    font-weight: bold;
+    color: green;
+    padding-left: 5px;
+    padding-right: 15px;
+}
+
+.stop-start {
+    margin-left: 10px;
+    padding: 13px 13px;
+    border-radius: 37px;
+    box-shadow: 2px 1px 3px;
+    position: absolute;
+    top: 46px;
+    right: 13px;
+    background-color: darkseagreen;
+}
+
+.stop-start:focus {
+    outline: none;
+}
+
+.timer-div {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 80px 80px;
+    border: solid 3px black;
+    border-radius: 80px;
+    position: relative;
+    background-color: lightgrey;
+}
+
+.timer-nmb {
+    font-size: 50px;
+    font-weight: 800;
+    font-family: monospace;
+    position: absolute;
+    top: 48px;
+    left: 18px;
+    color: darkblue;
+}
+
+.timer-count {
+    font-size: 19px;
+    font-weight: 600;
+    font-family: monospace;
+    position: absolute;
+    top: 10px;
+    left: 45px;
+    color: darkred;
+}
+
+.heart {
+    padding-left: 30px;
+    color: red;
+    font-size: 22px;
+    position: absolute;
+    top: 107px;
+    left: 51px;
+}
+#hw5task2-interface {
+    position: relative;
+}
+
+.heart-beat {
+    animation-duration: 1s;
+    animation-name: beating;
+    animation-iteration-count: infinite;
+}
+@keyframes beating {
+    50% { font-size: 24px }
+    60% { font-size: 22px }
+    80% { font-size: 24px }
+    90% { font-size: 22px }
+}
+
+#count-heart {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: monospace;
+    margin-left: 80px;
+}
+
+#input-heartbeat-count {
+    margin-top: 10px;
+}
