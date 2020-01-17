@@ -60,13 +60,6 @@ const ui = {
     this.output.innerText = 'Отсчет начнется через ....';
     this.tsk2StartTimer(5, ui.tsk2StartHeartBeatCount);
   },
-    // window.setTimeout(() => {
-    //   this.tsk2StartHeartBeatCount();
-    // }, 6000);
-    // window.setTimeout(() => {
-    //   this.tsk2Measure();
-    // }, 21010);
-    // },
   tsk2Calculate() {
     const heartBeat = +this.tsk2InputHeartBeatCount.value * 4;
     this.tsk2InputHeartBeatCount.value = '';
