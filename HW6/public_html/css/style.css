@@ -1,0 +1,55 @@
+body {
+    margin-top: 30px;
+    margin-left: 20px;
+    box-sizing: border-box;
+}
+
+i, #load-from-server, h1,
+#new-product {
+    margin-left: 20px;
+}
+
+.product {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 10px 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.product-name {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.edit-btn, .del-btn {
+    font-size: 12px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.edit-btn {
+    right: 80px;
+}
+
+.del-btn {
+    right: 20px;
+}
+
+.hide {
+    display: none;
+}
+
+#info-place::before {
+    content: "- ";
+}
+
+#info-place {
+    font-family: monospace;
+    font-weight: 600;
+    font-size: 16px;
+}
