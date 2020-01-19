@@ -2,8 +2,8 @@ function Rest() {
   this.xhr = new XMLHttpRequest();
 }
 
+// eslint-disable-next-line max-len
 Rest.prototype.get = function (url, fnOnLoad = () => this.getResponse, whatToGet = '/product') {
-  console.log((url + whatToGet));
   this.xhr.open('GET', url + whatToGet);
   this.xhr.send();
 
