@@ -16,36 +16,41 @@
 <p id="info-place"></p>
 <div class="ui-new-product hide">
   <hr>
-  <form>
-    <input type="text" placeholder="Name">
+  <form id="form-product-submit">
+    <input type="text" placeholder="Name (min 1 symbol)" required min="1">
     <br/><br/>
     <textarea name="textarea"
               rows="5" cols="70"
-              placeholder="Product-description"></textarea>
+              required min="3"
+              placeholder="Product-description (min 3 symbols)"></textarea>
     <br/><br/>
     <span>Price: </span>
     <input type="number"
            placeholder="Enter price"
-           min="0"
+           min="0" max="99999"
+           required
            value="100">
     <br/><br/>
     <input type="submit" id="product-submit">
+    <button id="btn-hide-new-product">Спрятать</button>
   </form>
 </div>
 
 <hr/>
-
-<div class="product">
-  <p class="product-name" id="product1-name">Name</p>
-  <hr/>
-  <p id="product1-description">Description dfggesgsgvgr htrhthtrh tghythtytjhtjytj</p>
-  <hr>
-  <span>Price: </span><span id="product1-price">1000</span><span> units</span>
-  <hr>
-  <button class="edit-btn" id="product1-edit-btn">Edit</button>
-  <button class="del-btn" id="product1-del-btn">Delete</button>
+<div class="output">
+<!--  <div class="product">-->
+<!--    <p class="product-name" id="product1-name">Name</p>-->
+<!--    <hr/>-->
+<!--    <p id="product1-description">Description dfggesgsgvgr htrhthtrh tghythtytjhtjytj</p>-->
+<!--    <hr>-->
+<!--    <span>Price: </span><span id="product1-price">1000</span><span> units</span>-->
+<!--    <hr>-->
+<!--    <button class="edit-btn" id="product1-edit-btn">Edit</button>-->
+<!--    <button class="del-btn" id="product1-del-btn">Delete</button>-->
+<!--  </div>-->
 </div>
 
+<script src="js/EventObserver.js"></script>
 <script src="js/Rest.js"></script>
 <script src="js/script.js"></script>
 </body>
