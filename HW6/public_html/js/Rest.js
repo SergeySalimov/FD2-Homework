@@ -2,29 +2,53 @@ function Rest() {
   this.xhr = new XMLHttpRequest();
 }
 
-// eslint-disable-next-line max-len
-Rest.prototype.get = function (url, fnOnLoad = () => this.getResponse, whatToGet = '/product') {
+Rest.prototype.get = function (url, fnOnLoad = () => this.restResponse, whatToGet = '/product') {
   this.xhr.open('GET', url + whatToGet);
   this.xhr.send();
 
   this.xhr.responseType = 'json';
 
   this.xhr.onload = () => {
-    this.getResponse = {
+    this.restResponse = {
       data: this.xhr.response,
       status: this.xhr.status,
     };
     if (this.xhr.status === 200) {
-      this.getResponse = {
+      this.restResponse = {
         done: true,
         message: 'Data loaded from server',
-        ...this.getResponse,
+        ...this.restResponse,
       };
     } else {
-      this.getResponse = {
+      this.restResponse = {
         done: false,
-        message: 'Something is going wrong',
-        ...this.getResponse,
+        message: `Something is going wrong. Status ${this.xhr.status}`,
+        ...this.restResponse,
+      };
+    }
+    fnOnLoad();
+  };
+};
+
+Rest.prototype.post = function (data, url, fnOnLoad, whatToPost = '/product') {
+  this.xhr.open('POST', url + whatToPost);
+  this.xhr.setRequestHeader('Content-Type', 'application/json');
+  this.xhr.send(JSON.stringify(data));
+
+  this.xhr.onload = () => {
+    if (this.xhr.status === 201) {
+      this.restResponse = {
+        status: this.xhr.status,
+        done: true,
+        message: 'Data was successfuly save',
+        data,
+      };
+    } else {
+      this.restResponse = {
+        status: this.xhr.status,
+        done: false,
+        message: `Something is going wrong. Status ${this.xhr.status}`,
+        data,
       };
     }
     fnOnLoad();
