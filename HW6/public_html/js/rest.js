@@ -54,3 +54,50 @@ Rest.prototype.post = function (data, url, fnOnLoad, whatToPost = '/product') {
     fnOnLoad();
   };
 };
+
+Rest.prototype.put = function (id, data, url, fnOnLoad, whatToPut = '/product') {
+  this.xhr.open('PUT', `${url + whatToPut}/${id}`);
+  this.xhr.setRequestHeader('Content-Type', 'application/json');
+  this.xhr.send(JSON.stringify(data));
+
+  this.xhr.onload = () => {
+    if (this.xhr.status === 200) {
+      this.restResponse = {
+        status: this.xhr.status,
+        done: true,
+        message: 'Data was successfuly save',
+        data,
+      };
+    } else {
+      this.restResponse = {
+        status: this.xhr.status,
+        done: false,
+        message: `Something is going wrong. Status ${this.xhr.status}`,
+        data,
+      };
+    }
+    fnOnLoad();
+  };
+};
+
+Rest.prototype.delete = function (id, url, fnOnLoad, whatToDelete = '/product') {
+  this.xhr.open('DELETE', `${url + whatToDelete}/${id}`);
+  this.xhr.send();
+
+  this.xhr.onload = () => {
+    if (this.xhr.status === 200) {
+      this.restResponse = {
+        status: this.xhr.status,
+        done: true,
+        message: 'Data was successfuly delete',
+      };
+    } else {
+      this.restResponse = {
+        status: this.xhr.status,
+        done: false,
+        message: `Something is going wrong. Status ${this.xhr.status}`,
+      };
+    }
+    fnOnLoad();
+  };
+};
