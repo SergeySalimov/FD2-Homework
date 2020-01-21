@@ -1,76 +1,22 @@
 {
   "product": [
     {
-      "name": "prod1",
-      "description": "desccription1",
-      "price": "100",
-      "id": "1"
+      "name": "Product 1",
+      "description": "desccription for product #1",
+      "price": "50",
+      "id": 1
     },
     {
-      "name": "1",
-      "description": "123",
-      "price": "100",
-      "id": "q-L5HMa"
+      "name": "Product 2",
+      "description": "Description for product #2",
+      "price": "200",
+      "id": 2
     },
     {
-      "name": "new",
-      "description": "113sdfds new",
-      "price": "456",
-      "id": "wdaJG59"
-    },
-    {
-      "name": "probe",
-      "description": "Probe",
-      "price": "89",
-      "id": "nUAFOtA"
-    },
-    {
-      "name": "23",
-      "description": "32wefw",
-      "price": "100",
-      "id": "U89g5Ej"
-    },
-    {
-      "name": "wer",
-      "description": "werwerwer",
-      "price": "100",
-      "id": "WK9TWfz"
-    },
-    {
-      "name": "werwe",
-      "description": "werwerwerwer",
-      "price": "100",
-      "id": "k6cS7jb"
-    },
-    {
-      "name": "hgjhgj",
-      "description": "fghgfhfhfhg",
-      "price": "100",
-      "id": "e_U9yqf"
-    },
-    {
-      "name": "fghgfh",
-      "description": "fghgf",
-      "price": "100",
-      "id": "bqQqj4-"
-    },
-    {
-      "name": "gfhfgh",
-      "description": "fghgfhgfgfhgfh",
-      "price": "10065",
-      "id": "D5hks0y"
-    },
-    {
-      "name": "324",
-      "description": "2342",
-      "price": "100",
-      "id": "-xovXvJ"
-    },
-    {
-      "name": "23423",
-      "description": "3243242",
-      "price": "999",
-      "id": "TCU7FYK"
+      "name": "Product 3",
+      "description": "Description for product #3",
+      "price": "150",
+      "id": 3
     }
   ]
 }
