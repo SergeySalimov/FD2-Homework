@@ -5,10 +5,36 @@ const db = {
   createNewProducts() {
     db.products = [...this.newRequest.restResponse.data];
   },
-  addNewProduct() {
-    db.products.push(this.newRequest.restResponse.data);
+  createUniqueId() {
+    const lastId = db.products[db.products.length - 1].id;
+    return +lastId + 1;
   },
-
+  addNewProduct() {
+    const newProduct = this.newRequest.restResponse.data;
+    db.products.push(newProduct);
+  },
+  // eslint-disable-next-line consistent-return
+  editProductInDB() {
+    const editedProduct = this.newRequest.restResponse.data;
+    const editedId = this.idTochange;
+    // ToDo find shorter way for obj1 = obj2
+    // eslint-disable-next-line no-restricted-syntax
+    for (const item of db.products) {
+      if (item.id === editedId) {
+        item.name = editedProduct.name;
+        item.description = editedProduct.description;
+        item.price = editedProduct.price;
+        return true;
+      }
+    }
+  },
+  deleteProductInDB() {
+    const deletedId = this.idTochange;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const item of db.products) {
+      if (item.id === deletedId) db.products.splice(db.products.indexOf(item), 1);
+    }
+  },
 };
 
 const ui = {
@@ -24,7 +50,7 @@ const ui = {
   renderProductToHTML(product) {
     const div = document.createElement('div');
     div.className = 'product';
-    const {id} = product;
+    const { id } = product;
     div.innerHTML = `
     <p class="product-name" id="product${id}-name">${product.name}</p>
     <hr/>
@@ -61,12 +87,19 @@ const ui = {
     ui.formSubmitNewProduct.reset();
     ui.newProductMenu.classList.remove('hide');
   },
+  positionY: undefined,
   goUP() {
+    ui.positionY = window.scrollY;
     window.scrollTo(0, 0);
+  },
+  goBack() {
+    window.scrollTo(0, ui.positionY);
+    ui.positionY = undefined;
   },
   flagOfEditingProduct: false,
   // eslint-disable-next-line consistent-return
   checkForProduct(id) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const item of db.products) {
       if (item.id === id) return item;
     }
@@ -75,13 +108,20 @@ const ui = {
     ui.putProductToForm(ui.checkForProduct(id));
     ui.goUP();
   },
-
-
+  editProduct(id) {
+    ui.flagOfEditingProduct = true;
+    ui.openForm();
+    ui.putDataOfEditingProductToForm(id);
+  },
 };
 
 const msgs = {
+  delete: {
+    on: 'Deleting product',
+  },
   edit: {
     start: 'Editing product',
+    putOnServer: 'Save changes to server',
   },
   save: {
     start: 'Start save data to server',
@@ -91,6 +131,7 @@ const msgs = {
   },
   error: {
     onloadNoResponse: 'No response from server',
+    errorMethod: 'Unknown method',
   },
   new: {
     enter: 'Enter new product',
@@ -110,39 +151,64 @@ const msgs = {
   },
 };
 
-function onEndRestWorking() {
-  ui.iconLoad.classList.remove('animate-spin');
-  msgs.show(this.newRequest.restResponse.message || msgs.error.onloadNoResponse);
+// eslint-disable-next-line consistent-return
+function eventSubscribe(method) {
+  // eslint-disable-next-line no-undef
+  this.eventObs = new EventObserver();
+  const endRestWorking = () => {
+    ui.iconLoad.classList.remove('animate-spin');
+    msgs.show(this.newRequest.restResponse.message || msgs.error.onloadNoResponse);
+  };
+  this.eventObs.subscribe(endRestWorking);
+  switch (method) {
+    case 'get':
+      this.eventObs.subscribe(db.createNewProducts);
+      break;
+    case 'post':
+      this.eventObs.subscribe(db.addNewProduct);
+      break;
+    case 'put':
+      this.eventObs.subscribe(db.editProductInDB);
+      this.eventObs.subscribe(ui.goBack);
+      break;
+    case 'delete':
+      this.eventObs.subscribe(db.deleteProductInDB);
+      break;
+    default:
+      msgs.show(msgs.error.errorMethod);
+      return false;
+  }
+  this.eventObs.subscribe(ui.renderProducts);
 }
 
-const eventOnloadFromServer = new EventObserver();
-eventOnloadFromServer.subscribe(onEndRestWorking);
-eventOnloadFromServer.subscribe(db.createNewProducts);
-eventOnloadFromServer.subscribe(ui.renderProducts);
-const eventOnSaveToServer = new EventObserver();
-eventOnSaveToServer.subscribe(onEndRestWorking);
-eventOnSaveToServer.subscribe(db.addNewProduct);
-eventOnSaveToServer.subscribe(ui.renderProducts);
-
-function loadDataFromServer() {
+// eslint-disable-next-line consistent-return
+function startWorkWithServer(method, data) {
   ui.iconLoad.classList.add('animate-spin');
-  msgs.show(msgs.load.start, 0);
+  // eslint-disable-next-line no-undef
   this.newRequest = new Rest();
-  this.newRequest.get(API, eventOnloadFromServer.broadcast);
-}
-
-function saveDataToServer(data) {
-  ui.iconLoad.classList.add('animate-spin');
-  msgs.show(msgs.save.start, 0);
-  this.newRequest = new Rest();
-  this.newRequest.post(data, API, eventOnSaveToServer.broadcast);
-}
-
-function editProduct(id) {
-  msgs.show(msgs.edit.start, 0);
-  ui.flagOfEditingProduct = true;
-  ui.openForm();
-  ui.putDataOfEditingProductToForm(id);
+  eventSubscribe(method);
+  const fnOn = this.eventObs.broadcast;
+  switch (method) {
+    case 'get':
+      msgs.show(msgs.load.start, 0);
+      this.newRequest.get(API, fnOn);
+      break;
+    case 'post':
+      msgs.show(msgs.save.start, 0);
+      this.newRequest.post(data, API, fnOn);
+      break;
+    case 'put':
+      msgs.show(msgs.edit.putOnServer, 0);
+      this.newRequest.put(this.idTochange, data, API, fnOn);
+      break;
+    case 'delete':
+      msgs.show(msgs.delete.on, 9000);
+      this.newRequest.delete(this.idTochange, API, fnOn);
+      break;
+    default:
+      msgs.show(msgs.error.errorMethod);
+      return false;
+  }
 }
 
 function eventListener() {
@@ -156,7 +222,12 @@ function eventListener() {
     event.preventDefault();
     const newProduct = ui.getNewProductFromForm();
     ui.hideAndClearForm();
-    saveDataToServer(newProduct);
+    if (!ui.flagOfEditingProduct) {
+      newProduct.id = db.createUniqueId();
+      startWorkWithServer('post', newProduct);
+    } else {
+      startWorkWithServer('put', newProduct);
+    }
   });
   ui.btnHideNewProduct.addEventListener('click', (event) => {
     event.preventDefault();
@@ -165,15 +236,18 @@ function eventListener() {
   });
   ui.btnLoadFromServer.addEventListener('click', (event) => {
     event.preventDefault();
-    loadDataFromServer();
+    ui.hideAndClearForm();
+    startWorkWithServer('get');
   });
   ui.outputProduct.addEventListener('click', (event) => {
     event.preventDefault();
-    const idBtn = event.target.dataset.id;
+    const idBtn = +event.target.dataset.id;
+    if (idBtn) this.idTochange = idBtn;
     if (event.target.classList.contains('edit-btn')) {
-      editProduct(idBtn);
+      msgs.show(msgs.edit.start, 0);
+      ui.editProduct(idBtn);
     } else if (event.target.classList.contains('del-btn')) {
-      console.log(`del ${idBtn}`);
+      startWorkWithServer('delete');
     }
   });
 }
