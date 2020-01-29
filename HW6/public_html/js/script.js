@@ -1,26 +1,20 @@
+'use strict';
+
 const API = 'http://localhost:3006';
 
 const db = {
   products: [],
-  createNewProducts() {
-    db.products = [...this.newRequest.restResponse.data];
+  createNewProducts(data) {
+    db.products = [...data];
   },
-  createUniqueId() {
-    const lastId = db.products[db.products.length - 1].id;
-    return +lastId + 1;
-  },
-  addNewProduct() {
-    const newProduct = this.newRequest.restResponse.data;
+  addNewProduct(newProduct) {
     db.products.push(newProduct);
   },
   // eslint-disable-next-line consistent-return
-  editProductInDB() {
-    const editedProduct = this.newRequest.restResponse.data;
-    const editedId = this.idTochange;
-    // ToDo find shorter way for obj1 = obj2
+  editProductInDB(editedProduct) {
     // eslint-disable-next-line no-restricted-syntax
     for (const item of db.products) {
-      if (item.id === editedId) {
+      if (item.id === editedProduct.id) {
         item.name = editedProduct.name;
         item.description = editedProduct.description;
         item.price = editedProduct.price;
@@ -28,8 +22,7 @@ const db = {
       }
     }
   },
-  deleteProductInDB() {
-    const deletedId = this.idTochange;
+  deleteProductInDB(deletedId) {
     // eslint-disable-next-line no-restricted-syntax
     for (const item of db.products) {
       if (item.id === deletedId) db.products.splice(db.products.indexOf(item), 1);
@@ -65,7 +58,6 @@ const ui = {
   },
   // eslint-disable-next-line consistent-return
   renderProducts() {
-    if (!this.newRequest.restResponse.done) return false;
     ui.outputProduct.innerText = '';
     db.products.forEach((eachPrd) => ui.renderProductToHTML(eachPrd));
   },
@@ -77,7 +69,7 @@ const ui = {
   putProductToForm: (prd) => {
     ui.formSubmitNewProduct[0].value = prd.name;
     ui.formSubmitNewProduct[1].value = prd.description;
-    ui.formSubmitNewProduct[2].value = +prd.price;
+    ui.formSubmitNewProduct[2].value = Number(prd.price);
   },
   hideAndClearForm() {
     ui.formSubmitNewProduct.reset();
@@ -108,6 +100,7 @@ const ui = {
     ui.putProductToForm(ui.checkForProduct(id));
     ui.goUP();
   },
+  idBtn: undefined,
   editProduct(id) {
     ui.flagOfEditingProduct = true;
     ui.openForm();
@@ -118,16 +111,24 @@ const ui = {
 const msgs = {
   delete: {
     on: 'Deleting product',
+    success: 'Data was successfuly delete',
+    error: 'Something is going wrong. Error 404',
   },
-  edit: {
+  put: {
     start: 'Editing product',
     putOnServer: 'Save changes to server',
+    success: 'Data was successfuly edited',
+    error: 'Something is going wrong. Error 404',
   },
-  save: {
+  post: {
     start: 'Start save data to server',
+    success: 'Data was successfuly save',
+    error: 'Something is going wrong. Error 404',
   },
-  load: {
+  get: {
     start: 'Start load from server',
+    success: 'Data loaded from server',
+    error: 'Something is going wrong. Error 404',
   },
   error: {
     onloadNoResponse: 'No response from server',
@@ -152,58 +153,80 @@ const msgs = {
 };
 
 // eslint-disable-next-line consistent-return
-function eventSubscribe(method) {
-  // eslint-disable-next-line no-undef
-  this.eventObs = new EventObserver();
-  const endRestWorking = () => {
-    ui.iconLoad.classList.remove('animate-spin');
-    msgs.show(this.newRequest.restResponse.message || msgs.error.onloadNoResponse);
-  };
-  this.eventObs.subscribe(endRestWorking);
+function checkStatusReturnAnswer(val, method) {
+  // eslint-disable-next-line max-len
+  if (method !== 'get' && method !== 'post' && method !== 'put' && method !== 'delete') return msgs.error.errorMethod;
+  if (val === 200 || val === 201) {
+    // eslint-disable-next-line default-case
+    switch (method) {
+      case 'get':
+        return msgs.get.success;
+      case 'post':
+        return msgs.post.success;
+      case 'put':
+        return msgs.put.success;
+      case 'delete':
+        return msgs.delete.success;
+    }
+  } else if (val === 404) {
+    // eslint-disable-next-line default-case
+    switch (method) {
+      case 'get':
+        return msgs.get.error;
+      case 'post':
+        return msgs.post.error;
+      case 'put':
+        return msgs.put.error;
+      case 'delete':
+        return msgs.delete.error;
+    }
+  }
+}
+
+function onResponse(restResp, method) {
+  ui.iconLoad.classList.remove('animate-spin');
+  msgs.show(checkStatusReturnAnswer(restResp.xhr.status, method));
+  // eslint-disable-next-line default-case
   switch (method) {
     case 'get':
-      this.eventObs.subscribe(db.createNewProducts);
+      db.createNewProducts(restResp.xhr.response);
       break;
     case 'post':
-      this.eventObs.subscribe(db.addNewProduct);
+      db.addNewProduct(JSON.parse(restResp.xhr.response));
       break;
     case 'put':
-      this.eventObs.subscribe(db.editProductInDB);
-      this.eventObs.subscribe(ui.goBack);
+      db.editProductInDB(JSON.parse(restResp.xhr.response));
+      ui.goBack();
       break;
     case 'delete':
-      this.eventObs.subscribe(db.deleteProductInDB);
+      db.deleteProductInDB(ui.idBtn);
       break;
-    default:
-      msgs.show(msgs.error.errorMethod);
-      return false;
   }
-  this.eventObs.subscribe(ui.renderProducts);
+  ui.renderProducts();
+  return true;
 }
 
 // eslint-disable-next-line consistent-return
 function startWorkWithServer(method, data) {
   ui.iconLoad.classList.add('animate-spin');
   // eslint-disable-next-line no-undef
-  this.newRequest = new Rest();
-  eventSubscribe(method);
-  const fnOn = this.eventObs.broadcast;
+  const newRequest = new Rest();
+
   switch (method) {
     case 'get':
-      msgs.show(msgs.load.start, 0);
-      this.newRequest.get(API, fnOn);
+      msgs.show(msgs.get.start, 0);
+      newRequest.get(API, onResponse);
       break;
     case 'post':
-      msgs.show(msgs.save.start, 0);
-      this.newRequest.post(data, API, fnOn);
+      msgs.show(msgs.post.start, 0);
+      newRequest.post(data, API, onResponse);
       break;
     case 'put':
-      msgs.show(msgs.edit.putOnServer, 0);
-      this.newRequest.put(this.idTochange, data, API, fnOn);
+      newRequest.put(ui.idBtn, data, API, onResponse);
       break;
     case 'delete':
       msgs.show(msgs.delete.on, 9000);
-      this.newRequest.delete(this.idTochange, API, fnOn);
+      newRequest.delete(ui.idBtn, API, onResponse);
       break;
     default:
       msgs.show(msgs.error.errorMethod);
@@ -223,7 +246,6 @@ function eventListener() {
     const newProduct = ui.getNewProductFromForm();
     ui.hideAndClearForm();
     if (!ui.flagOfEditingProduct) {
-      newProduct.id = db.createUniqueId();
       startWorkWithServer('post', newProduct);
     } else {
       startWorkWithServer('put', newProduct);
@@ -241,11 +263,10 @@ function eventListener() {
   });
   ui.outputProduct.addEventListener('click', (event) => {
     event.preventDefault();
-    const idBtn = +event.target.dataset.id;
-    if (idBtn) this.idTochange = idBtn;
+    ui.idBtn = Number(event.target.dataset.id);
     if (event.target.classList.contains('edit-btn')) {
-      msgs.show(msgs.edit.start, 0);
-      ui.editProduct(idBtn);
+      msgs.show(msgs.put.start, 0);
+      ui.editProduct(ui.idBtn);
     } else if (event.target.classList.contains('del-btn')) {
       startWorkWithServer('delete');
     }
