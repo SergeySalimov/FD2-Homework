@@ -17,7 +17,7 @@ module.exports = {
   context: path.resolve(__dirname, DIR_FROM),
   mode: 'development',
   entry: {
-    app: './script.js',
+    main: './index.js',
   },
   devtool: 'inline-source-map',
   resolve: {
