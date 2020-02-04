@@ -16,19 +16,22 @@ module.exports = {
   context: path.resolve(__dirname, DIR_FROM),
   mode: 'development',
   entry: {
-    main: './script.js',
+    app: './script.js',
+  },
+  devtool: 'inline-source-map',
+  resolve: {
+    extensions: ['.js'],
   },
   output: {
     // [name], [contenthash]
     filename: '[name].[hash].bundle.js',
     path: path.resolve(__dirname, DIR_TO),
   },
-  devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist',
+    contentBase: path.resolve(__dirname, DIR_TO),
     port: 4200,
     open: 'chrome',
-    hot: isDev,
+    // hot: isDev,
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -41,11 +44,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       // filename: 'style.[hash].css',
       filename: '[name].css',
-      chunkFilename: '[id].css',
+      // chunkFilename: '[id].css',
     }),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, `${DIR_FROM}/filename`),
+        from: path.resolve(__dirname, `${DIR_FROM}/favicon.ico`),
         to: path.resolve(__dirname, DIR_TO),
       },
     ]),
