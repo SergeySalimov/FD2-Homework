@@ -12,28 +12,37 @@
     <label for="latitude">Input latitude</label>
     <input type="number"
            step="0.0001"
-           value="42.3601"
+           value="53.6693"
            id="latitude">
   </div>
   <div class="longitude">
     <label for="longitude">Input longitude</label>
     <input type="number"
            step="0.0001"
-           value="-71.0589"
+           value="23.8131"
            id="longitude">
   </div>
   <div class="load-btn">
     <button id="load-from-server">Load from server</button>
-    <i class="icon-spin3"></i>
+    <i class="icon-spin3 spinner"></i>
     <button id="clear-all">Clear All</button>
   </div>
 </div>
 
-<div class="display-data">
+<div class="display-data hide">
   <h3>The weather is:</h3>
-  <p>Temperature: <span>0</span></p>
+  <p>Temperature: <span id="temperature"></span> °C</p>
+  <p>Humidity: <span id="humidity"></span> %</p>
+  <p>Pressure: <span id="pressure"></span> MPA</p>
+  <p>WindSpeed: <span id="windSpeed"></span> m/s</p>
+
+</div>
+
+<div class="summary">
+  <p>Summary for tomorrow: <span id="summary"></span></p>
 </div>
 
 <div class="img-weather"></div>
+
 </body>
 </html>

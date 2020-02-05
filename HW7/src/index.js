@@ -1,6 +1,22 @@
-// import './css/style.css';
-import './css/style-new.scss';
-import { App } from './App';
+import './css/style.scss';
+import { UI } from './js/UI';
+import { CONFIG } from './js/config';
+import { Rest } from './js/Rest';
 
-const app = new App('Sergey777');
-console.log(app);
+function eventListener() {
+  UI.btnLoad.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (CONFIG.restNotWorking) {
+      const rest = new Rest(UI.latitude.value, UI.longitude.value);
+    }
+  });
+  UI.btnClear.addEventListener('click', (event) => {
+    event.preventDefault();
+    UI.clearUI();
+    CONFIG.restNotWorking = true;
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  eventListener();
+});
