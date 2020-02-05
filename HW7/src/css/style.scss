@@ -17,6 +17,7 @@ body {
   }
 
   .input-data {
+    margin-top: 55px;
     display: inline-block;
     border: solid 1px black;
     border-radius: 5px;
@@ -53,17 +54,54 @@ body {
     }
 
     p {
-      padding-right: 200px
+      padding-right: 200px;
+      font-size: 0.8rem;
     }
   }
 
+  .summary {
+    margin: 35px;
+  }
+
   .img-weather {
-    width: 252px;
-    height: 252px;
+    width: 230px;
+    height: 230px;
     border: solid 1px black;
     border-radius: 5px;
     margin-top: 20px;
     margin-left: 30px;
+    background-image: none;
+    background-size: cover;
+    &.clear-day {
+      background-image: url("../assets/img/clear-day.png");
+    }
+    &.clear-night {
+      background-image: url("../assets/img/clear-night1.png");
+    }
+    &.rain {
+      background-image: url("../assets/img/rain.png");
+    }
+    &.snow {
+      background-image: url("../assets/img/snow.png");
+    }
+    &.sleet {
+      background-image: url("../assets/img/sleet1.png");
+    }
+    &.wind {
+      background-image: url("../assets/img/wind1.png");
+    }
+    &.fog {
+      background-image: url("../assets/img/fog2.png");
+    }
+    &.cloudy {
+      background-image: url("../assets/img/cloudy1.png");
+    }
+    &.partly-cloudy-day {
+      background-image: url("../assets/img/partly-cloudy-day.png");
+    }
+    &.partly-cloudy-night {
+      background-image: url("../assets/img/partly-cloudy-night1.png");
+    }
   }
 }
 
