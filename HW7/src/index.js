@@ -7,13 +7,13 @@ function eventListener() {
   UI.btnLoad.addEventListener('click', (event) => {
     event.preventDefault();
     if (CONFIG.restNotWorking) {
+      CONFIG.restNotWorking = false;
       const rest = new Rest(UI.latitude.value, UI.longitude.value);
     }
   });
   UI.btnClear.addEventListener('click', (event) => {
     event.preventDefault();
     UI.clearUI();
-    CONFIG.restNotWorking = true;
   });
 }
 
