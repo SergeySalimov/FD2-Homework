@@ -9,13 +9,9 @@ const ui = {
   // eslint-disable-next-line max-len
   tsk2InputHeartBeatCountBtn: document.getElementById('input-heartbeat-count-btn7'),
   flagForHeartbeat: false,
-  tsk2StartTimer(time = 5) {
-    const newTimer = new CustomTimer(ui.tsk2HeartOutputTimer, time);
-    newTimer.start();
-  },
   tsk2StartHeartBeatCount() {
     this.output.innerText = 'ИЗМЕРЕНИЕ ПУЛЬСА ....';
-    this.tsk2HeartOutputTimer.innerText = '15';
+    this.tsk2HeartOutputTimer.innerText = 'отсчет';
     this.tsk2Heart.classList.add('heart-beat');
   },
   tsk2Measure() {
@@ -26,13 +22,16 @@ const ui = {
   },
   tsk2StartWork() {
     this.output.innerText = 'Отсчет начнется через ....';
-    this.tsk2StartTimer();
-    // window.setTimeout(() => {
-    //   this.tsk2StartHeartBeatCount();
-    // }, 6000);
-    // window.setTimeout(() => {
-    //   this.tsk2Measure();
-    // }, 21010);
+    const firstTimer = new CustomTimer(ui.tsk2HeartOutputTimer, 5);
+    const secondTimer = new CustomTimer(ui.tsk2HeartOutputTimer, 15);
+    firstTimer.startPromise()
+      .then(() => {
+        this.tsk2StartHeartBeatCount();
+        secondTimer.startPromise()
+          .then(() => {
+            this.tsk2Measure();
+          });
+      });
   },
   tsk2Calculate() {
     const heartBeat = +this.tsk2InputHeartBeatCount.value * 4;
