@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Homework 7</title>
+</head>
+<body>
+<h1>Homework 7</h1>
+<div class="input-data">
+  <div class="latitude">
+    <label for="latitude">Input latitude</label>
+    <input type="number"
+           step="0.0001"
+           value="53.666664"
+           id="latitude">
+  </div>
+  <div class="longitude">
+    <label for="longitude">Input longitude</label>
+    <input type="number"
+           step="0.0001"
+           value="23.83333"
+           id="longitude">
+  </div>
+  <div class="load-btn">
+    <button id="load-from-server">Load from server</button>
+    <i class="icon-spin3 spinner"></i>
+    <button id="clear-all">Clear All</button>
+  </div>
+</div>
+
+<div class="display-data hide">
+  <h3>The weather in <span id="place"></span> is:</h3>
+  <p>Temperature: <span id="temperature"></span> °C</p>
+  <p>Humidity: <span id="humidity"></span> %</p>
+  <p>Pressure: <span id="pressure"></span> MPA</p>
+  <p>WindSpeed: <span id="windSpeed"></span> m/s</p>
+
+</div>
+
+<div class="summary">
+  <p>Summary: <span id="summary"></span></p>
+</div>
+
+<div class="img-weather"></div>
+
+</body>
+</html>

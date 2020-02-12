@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>homework7 - timer</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h1>Homework 7 timer</h1>
+<p>Task: Написать программу которая помогает измерить пульс: <br/>
+  Условия:<br/>
+  на странице находится три елемента поле для сообщений, поле ввода input + кнопка ввода, кнопка.
+  пользователь нажимает кнопку в поле для сообщения появляется информация: "Измерение начнется через 5,4,3,...(таймер)"<br/>
+  Измерение...<br/>
+  после этого идет отсчет 15 секунд
+  затем пользователь должен ввести количество ударов
+  в сообщении должен появиться результат userInput * 4 <br/><br/>
+UPD: Переписать таймер из предыдущего задания на Promise
+</p>
+
+<div class="btn-div" id="hw7task1-interface">
+  <i class="icon-heart-1 heart" id="heart7"></i>
+  <h3>Измерение пульса</h3>
+  <p>Нажмите на старт и через 5 секунд начнется отсчет времени</p>
+  <p>После 15 секунд измерения введите количество ударов</p>
+  <button id="start-heart7">Старт</button>
+  <span id="count-heart7"></span>
+
+
+  <div id="input-heartbeat7" class="hide">
+  <input type="number" min="1" max="99" id="input-heartbeat-count7">
+  <button id="input-heartbeat-count-btn7">Ввод</button>
+  </div>
+  <hr/>
+</div>
+
+<div id="output7"></div>
+
+<script src="CustomTimer.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

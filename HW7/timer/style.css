@@ -1,0 +1,63 @@
+@import "font/css/fontello.css";
+
+body {
+    margin-left: 30px;
+}
+
+h1 {
+    padding-left: 50px;
+    margin-top: 20px;
+}
+
+.btn-div, #output, .mar-left {
+    margin-left: 20px;
+}
+
+.mar-top {
+    margin-top: 5px;
+}
+
+.cur {
+    margin-left: 25px;
+    margin-right: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+.heart {
+    padding-left: 30px;
+    color: red;
+    font-size: 22px;
+    position: absolute;
+    top: 107px;
+    left: 51px;
+}
+
+#hw7task1-interface {
+    position: relative;
+}
+
+.heart-beat {
+    animation-duration: 1s;
+    animation-name: beating;
+    animation-iteration-count: infinite;
+}
+@keyframes beating {
+    50% { font-size: 24px }
+    60% { font-size: 22px }
+    80% { font-size: 24px }
+    90% { font-size: 22px }
+}
+
+#count-heart7 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: monospace;
+    margin-left: 80px;
+}
+
+#input-heartbeat-count7 {
+    margin-top: 10px;
+}
