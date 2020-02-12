@@ -1,4 +1,4 @@
-function CustomTimer(renderEl, time = 30) {
+function CustomTimer(renderEl, time = 30, fn) {
   let timeToCount = parseInt(time, 10);
   let pauseFlag = false;
   let intervalId = null;
@@ -6,7 +6,13 @@ function CustomTimer(renderEl, time = 30) {
 
   this.start = function () {
     intervalId = setInterval(() => {
-      if (timeToCount === 0) clearInterval(intervalId);
+      if (timeToCount === 0) {
+        clearInterval(intervalId);
+        if (fn) {
+          fn();
+          return false;
+        }
+      }
       el.innerText = timeToCount;
       timeToCount -= 1;
     }, 1000);

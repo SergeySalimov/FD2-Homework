@@ -40,31 +40,25 @@ const ui = {
   // eslint-disable-next-line max-len
   tsk2InputHeartBeatCountBtn: document.getElementById('input-heartbeat-count-btn'),
   flagForHeartbeat: false,
-  tsk2StartTimer(time = 5) {
-    const newTimer = new CustomTimer(ui.tsk2HeartOutputTimer, time);
+  tsk2StartTimer(time, fnNext) {
+    const newTimer = new CustomTimer(ui.tsk2HeartOutputTimer, time, fnNext);
     newTimer.start();
   },
   tsk2StartHeartBeatCount() {
-    this.output.innerText = 'ИЗМЕРЕНИЕ ПУЛЬСА ....';
-    this.tsk2HeartOutputTimer.innerText = '15';
-    this.tsk2Heart.classList.add('heart-beat');
-    this.tsk2StartTimer(14);
+    ui.output.innerText = 'ИЗМЕРЕНИЕ ПУЛЬСА ....';
+    ui.tsk2HeartOutputTimer.innerText = '15';
+    ui.tsk2Heart.classList.add('heart-beat');
+    ui.tsk2StartTimer(14, ui.tsk2Measure);
   },
   tsk2Measure() {
-    this.tsk2InputHeartBeat.classList.remove('hide');
-    this.tsk2HeartOutputTimer.innerText = 'все';
-    this.output.innerText = 'Время закончилось, введите количество ударов';
-    this.tsk2Heart.classList.remove('heart-beat');
+    ui.tsk2InputHeartBeat.classList.remove('hide');
+    ui.tsk2HeartOutputTimer.innerText = 'все';
+    ui.output.innerText = 'Время закончилось, введите количество ударов';
+    ui.tsk2Heart.classList.remove('heart-beat');
   },
   tsk2StartWork() {
     this.output.innerText = 'Отсчет начнется через ....';
-    this.tsk2StartTimer();
-    window.setTimeout(() => {
-      this.tsk2StartHeartBeatCount();
-    }, 6000);
-    window.setTimeout(() => {
-      this.tsk2Measure();
-    }, 21010);
+    this.tsk2StartTimer(5, ui.tsk2StartHeartBeatCount);
   },
   tsk2Calculate() {
     const heartBeat = +this.tsk2InputHeartBeatCount.value * 4;
