@@ -2,7 +2,7 @@ import { CONFIG } from './config';
 import { UI } from './UI';
 
 export class Rest {
-  constructor(latitude, longitude) {
+  constructor(latitude = 53.666664, longitude = 23.83333) {
     this.latitude = latitude;
     this.longitude = longitude;
     UI.spinner.classList.add('animate-spin');
