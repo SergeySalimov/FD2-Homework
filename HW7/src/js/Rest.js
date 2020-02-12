@@ -22,7 +22,7 @@ export class Rest {
         UI.spinner.classList.remove('animate-spin');
         UI.renderUI(data);
         console.log(data);
-        CONFIG.restNotWorking = true;
+        UI.restNotWorking = true;
       });
   }
 }

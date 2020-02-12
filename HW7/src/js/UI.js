@@ -27,4 +27,5 @@ export const UI = {
     this.summary.innerText = '';
     this.displayData.classList.add('hide');
   },
+  restNotWorking: true,
 };

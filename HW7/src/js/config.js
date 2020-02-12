@@ -5,7 +5,6 @@ export const CONFIG = {
   exlude: 'exclude=daily,flags',
   units: 'units=auto',
   corsProxy: 'https://cors-anywhere.herokuapp.com/',
-  restNotWorking: true,
   getUrl(latitude, longitude) {
     // eslint-disable-next-line max-len
     return `${this.corsProxy + this.api + this.secretKey}/${latitude},${longitude}?${this.units}&${this.language}`;
