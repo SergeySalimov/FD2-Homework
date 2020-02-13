@@ -1,0 +1,43 @@
+@import "roboto.css";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  font-family: Roboto, sans-serif;
+
+  h1 {
+    background-color: #dddddd;
+  }
+  .card {
+
+    .card-header {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .img-large {
+      max-width: 80%;
+      height: auto;
+      display: block;
+      @media (min-width: map-get($grid-breakpoints, "sm")) {
+        max-width: 40%;
+        float: left;
+      }
+    }
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .full {
+      text-indent: 30px;
+      white-space: normal;
+      overflow: auto;
+      text-align: justify;
+    }
+
+
+  }
+}
+
+
+
