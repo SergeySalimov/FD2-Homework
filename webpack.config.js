@@ -3,12 +3,11 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const FontelloPlugin = require('fontello-webpack-plugin');
 // const TerserPlugin = require('terser-webpack-plugin');
 // const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const DIR_FROM = 'HW7/src';
-const DIR_TO = 'HW7/dist';
+const DIR_FROM = 'HW8/src';
+const DIR_TO = 'HW8/dist';
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -57,6 +56,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env'],
+          },
+        },
+      },
+      {
         test: /\.css$/i,
         use: [{
           loader: MiniCssExtractPlugin.loader,
@@ -73,7 +82,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|svg|gif|ico)$/,
-        use: ['file-loader?name=imgs/[name].[ext]'],
+        use: ['file-loader?name=images/[name].[ext]'],
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
