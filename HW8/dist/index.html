@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/x-icon" sizes="16x16" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <title>Homework-8</title>
+</head>
+<body>
+<div class="container all-content">
+  <div class="row">
+    <div class="col-12 mb-4 mt-4 py-3 px-2 header text-center">
+      <h1>НОВОСТИ ....</h1>
+
+      <ul class="nav navbar navbar-light bg-light justify-content-around">
+        <a class="navbar-brand" href="/"><img src="./assets/img/logo.jpg" alt="News logo"></a>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Newsline</a>
+                </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+
+        <form class="form-inline">
+          <input class="form-control mr-sm-4" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+      </ul>
+
+      <div class="news">
+
+        <script id="products-template" type="x-handlebars-template">​
+        {{#each this}}
+        <div class="card my-3" data-index="{{id}}">
+          <h5 class="card-header text-center">{{name}}</h5>
+          <div class="row no-gutters">
+            <div class="col-2">
+              <img src="{{content.img.url}}" class="card-img img-fluid ml-2 mt-2 m-sm-2 m-lg-3 img-thumbnail" alt="{{content.img.name}}">
+            </div>
+            <div class="col-10">
+              <div class="card-body ml-3 text-left">
+                <p class="card-text">{{content.data}}</p>
+                <a href="#" class="btn-more" data-more="{{id}}">Подробнее..</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+        </script>
+
+      </div>
+
+      <div class="single-news d-none">
+
+        <div class="card my-4 text-left">
+          <h5 class="card-header">Featured</h5>
+          <div class="m-4">
+            <p class="full">
+              <img src="./assets/img/img1.png" class="card-img img-large m-3" alt="...">
+              <b> With supporting </b>text below as adfgd gdg dgdfgdgdf gdf natural lead-in to additional content. Lorem
+              ipsum
+<!--              is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's-->
+<!--              standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it-->
+<!--              to make a type specimen book. It has survived not only five centuries, but also the leap into electronic-->
+<!--              typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset-->
+<!--              sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus-->
+<!--              PageMaker including versions of Lorem Ipsum.Lorem ipsum is simply dummy text of the printing and-->
+<!--              typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when-->
+<!--              an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived-->
+<!--              not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
+<!--              It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and-->
+<!--              more recently with desktop publishing software like Aldus PageMaker including versions of Lorem-->
+<!--              Ipsum.Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
+<!--              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and-->
+<!--              scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into-->
+<!--              electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release-->
+<!--              of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software-->
+<!--              like Aldus PageMaker including versions of Lorem Ipsum.-->
+            </p>
+          </div>
+          <a href="#" class="m-3 back">Назад</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="error-page d-none">
+  <h3>Sorry, something went wrong :(</h3>
+  <a href="/">Go to main page</a>
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+<script src="bundle.js"></script>
+</body>
+</html>
