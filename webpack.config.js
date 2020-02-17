@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const TerserPlugin = require('terser-webpack-plugin');
 // const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const DIR_FROM = 'HW8/src';
-const DIR_TO = 'HW8/dist';
+const DIR_FROM = 'HW9/src';
+const DIR_TO = 'HW9/dist';
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -31,6 +31,9 @@ module.exports = {
     contentBase: path.resolve(__dirname, DIR_TO),
     port: 4200,
     open: 'chrome',
+    historyApiFallback: {
+      index: 'index.html',
+    },
     // hot: isDev,
   },
   plugins: [

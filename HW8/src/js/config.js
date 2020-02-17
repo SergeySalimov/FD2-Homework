@@ -1,6 +1,6 @@
 export const CONFIG = {
   api: 'http://localhost:3007',
-  dispNone: 'd-none',
+  dNone: 'd-none',
   news: '.news',
   allContent: '.all-content',
   errorPage: '.error-page',

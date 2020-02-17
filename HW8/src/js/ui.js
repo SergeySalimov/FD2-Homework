@@ -14,8 +14,8 @@ export class Ui {
   }
 
   hideNews() {
-    this.news.classList.add(CONFIG.dispNone);
-    this.singleNews.classList.add(CONFIG.dispNone);
+    this.news.classList.add(CONFIG.dNone);
+    this.singleNews.classList.add(CONFIG.dNone);
   }
 
   generateArticles(data) {
@@ -40,14 +40,14 @@ export class Ui {
   }
 
   renderNewsline() {
-    this.news.classList.remove(CONFIG.dispNone);
-    this.singleNews.classList.add(CONFIG.dispNone);
+    this.news.classList.remove(CONFIG.dNone);
+    this.singleNews.classList.add(CONFIG.dNone);
   }
 
   renderArticle(data) {
     if (data.length) {
       const articleId = window.location.pathname.split('/article/')[1].trim();
-      this.news.classList.add(CONFIG.dispNone);
+      this.news.classList.add(CONFIG.dNone);
       const article = [...data].find((item) => String(item.id) === String(articleId));
       const isFind = !(Object.entries(article).length === 0 && article.constructor === Object);
       // eslint-disable-next-line no-unused-expressions
@@ -65,7 +65,7 @@ export class Ui {
     this.articleContent.prepend(this.articleContentImg);
     // go UP & show
     window.scrollTo(0, 0);
-    this.singleNews.classList.remove(CONFIG.dispNone);
+    this.singleNews.classList.remove(CONFIG.dNone);
   }
 
   render404() {
@@ -74,8 +74,8 @@ export class Ui {
   }
 
   renderErrorPage() {
-    this.allContent.classList.add(CONFIG.dispNone);
-    this.errorPage.classList.remove(CONFIG.dispNone);
+    this.allContent.classList.add(CONFIG.dNone);
+    this.errorPage.classList.remove(CONFIG.dNone);
   }
 
   initArticle() {

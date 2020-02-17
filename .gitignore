@@ -3,7 +3,7 @@ $cat .gitignore
 # Node Files #
 /node_modules/
 # directory /dist #
-/dist/
+# /dist/ #
 
 # IDEs
 .idea/*
