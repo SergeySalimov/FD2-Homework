@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" type="image/x-icon" sizes="16x16" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="/style.css">
   <title>Homework-8</title>
 </head>
@@ -15,15 +15,21 @@
 
       <ul class="nav navbar navbar-light bg-light justify-content-around">
         <a class="navbar-brand" href="/"><img src="/assets/img/logo.jpg" alt="News logo"></a>
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">Newsline</a>
-                </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link active" href="#" id="nav-newsline">Newsline</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="nav-about">About</a>
         </li>
 
         <form class="form-inline">
-          <input class="form-control mr-sm-4" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control mr-sm-4"
+                 id="search-input"
+                 pattern="(.|\s)*\S(.|\s)*"
+                 required
+                 type="search"
+                 placeholder="Search"
+                 aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
 
@@ -37,7 +43,8 @@
           <h5 class="card-header text-center">{{name}}</h5>
           <div class="row no-gutters">
             <div class="col-2">
-              <img src="{{content.img.url}}" class="card-img img-fluid ml-2 mt-2 m-sm-2 m-lg-3 img-thumbnail" alt="{{content.img.name}}">
+              <img src="{{content.img.url}}" class="card-img img-fluid ml-2 mt-2 m-sm-2 m-lg-3 img-thumbnail"
+                   alt="{{content.img.name}}">
             </div>
             <div class="col-10">
               <div class="card-body ml-3 text-left">
@@ -59,29 +66,44 @@
           <div class="m-4">
             <p class="full">
               <img src="/assets/img/img1.png" class="card-img img-large m-3" alt="...">
-              <b> With supporting </b>text below as adfgd gdg dgdfgdgdf gdf natural lead-in to additional content. Lorem
-              ipsum
-<!--              is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's-->
-<!--              standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it-->
-<!--              to make a type specimen book. It has survived not only five centuries, but also the leap into electronic-->
-<!--              typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset-->
-<!--              sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus-->
-<!--              PageMaker including versions of Lorem Ipsum.Lorem ipsum is simply dummy text of the printing and-->
-<!--              typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when-->
-<!--              an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived-->
-<!--              not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
-<!--              It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and-->
-<!--              more recently with desktop publishing software like Aldus PageMaker including versions of Lorem-->
-<!--              Ipsum.Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
-<!--              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and-->
-<!--              scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into-->
-<!--              electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release-->
-<!--              of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software-->
-<!--              like Aldus PageMaker including versions of Lorem Ipsum.-->
+
             </p>
           </div>
           <a href="#" class="m-3 back">Назад</a>
         </div>
+      </div>
+
+      <div class="about d-none">
+        <h2 class="mt-3 text-center">About........</h2>
+        <p class="mt-2 p-3 text-justify">
+          Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem
+          ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+          to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.Lorem ipsum is simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
+          an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived
+          not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+          It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+          Ipsum.Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+          electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
+          of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+          like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <a href="#" class="m-3 back">Назад</a>
+      </div>
+
+      <div class="search-page d-none">
+        <h2 class="text-left">Results: <span>dgdfgdfg</span></h2>
+        <div class="results">
+<!--          <p>Подходящих документов не найдено.</p>-->
+        </div>
+
       </div>
 
     </div>

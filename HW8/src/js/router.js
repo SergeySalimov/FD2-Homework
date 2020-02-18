@@ -3,7 +3,6 @@ export class Router {
     this.routes = {};
 
     window.addEventListener('popstate', () => {
-      console.log('popstate');
       this.render(decodeURI(window.location.pathname));
     });
   }

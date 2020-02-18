@@ -9,7 +9,6 @@ class App {
     this.articles = [];
     this.router = new Router();
     this.ui = new Ui(this.router);
-    this.ui = new Ui(this.router);
     this.init();
   }
 
@@ -24,8 +23,9 @@ class App {
         this.articles = data;
         this.initRouter();
         this.ui.generateArticles(data);
+        this.ui.initNavBtn();
         this.router.render(decodeURI(window.location.pathname));
-        this.ui.initArticle();
+        this.ui.initBack();
       });
   }
 
@@ -33,6 +33,9 @@ class App {
     this.router.addRoute('', this.ui.renderNewsline.bind(this.ui));
     this.router.addRoute('404', this.ui.renderErrorPage.bind(this.ui));
     this.router.addRoute('article', this.ui.renderArticle.bind(this.ui, this.articles));
+    this.router.addRoute('about', this.ui.renderAboutPage.bind(this.ui, this.articles));
+    //ToDo needs calculation
+    this.router.addRoute('search', this.ui.renderSearchPage.bind(this.ui, this.articles));
   }
 }
 
