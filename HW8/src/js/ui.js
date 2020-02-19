@@ -41,14 +41,16 @@ export class Ui {
     // compile with handlebar
     this.news.innerHTML = this.handlebarCompile(data);
 
-    this.news.addEventListener('click', (event) => {
-      event.preventDefault();
-      if (event.target.classList.contains('btn-more')) {
-        this.articleId = event.target.dataset.more;
-        window.history.pushState(null, null, `/article/${this.articleId}`);
-        this.router.render(decodeURI(window.location.pathname));
-      }
-    });
+    this.news.addEventListener('click', this.btnMore.bind(this));
+  }
+
+  btnMore(event) {
+    event.preventDefault();
+    if (event.target.classList.contains('btn-more')) {
+      this.articleId = event.target.dataset.more;
+      window.history.pushState(null, null, `/article/${this.articleId}`);
+      this.router.render(decodeURI(window.location.pathname));
+    }
   }
 
   renderNewsline() {
@@ -107,6 +109,7 @@ export class Ui {
     // render with handlebar
     if (this.searchResult.length !== undefined && this.searchResult.length !== 0) {
       this.searchPageResults.innerHTML = this.handlebarCompile(this.searchResult);
+      this.searchPageResults.addEventListener('click', this.btnMore.bind(this));
     } else {
       const p = document.createElement('p');
       p.innerHTML = CONFIG.searchNoResult;
