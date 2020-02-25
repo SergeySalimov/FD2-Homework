@@ -5,6 +5,7 @@
   "main": "script.js",
   "scripts": {
     "start-http": "./node_modules/.bin/http-server ./HW5 -a localhost -p 8082 -c-1",
+    "start-json": "./node_modules/.bin/json-server --watch ./HW8/db.json --port 3006",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "prod": "cross-env NODE_ENV=production webpack --mode production",
     "watch": "cross-env NODE_ENV=development webpack --watch",
@@ -21,10 +22,9 @@
   },
   "homepage": "https://github.com/SergeySalimov/FD2-Homework#readme",
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/polyfill": "^7.8.3",
-    "@babel/preset-env": "^7.8.4",
-    "babel-loader": "^8.0.6",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "cross-env": "^7.0.0",
@@ -35,6 +35,7 @@
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.12.0",
+    "json-server": "^0.16.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
@@ -46,6 +47,7 @@
     "webpack-dev-server": "^3.10.2"
   },
   "dependencies": {
-    "fontello-webpack-plugin": "^0.4.8"
+    "bootstrap": "^4.4.1",
+    "handlebars": "^4.7.3"
   }
 }
