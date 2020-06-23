@@ -1,0 +1,68 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  font-family: Roboto, sans-serif;
+  .search-page {
+    h2 {
+      background-color: #e7e7e7;
+      font-size: 2.2rem;
+      font-weight: 600;
+      padding: 10px 30px;
+      span {
+        font-weight: 400;
+      }
+    }
+    .results > p {
+      margin-top: 100px;
+    }
+  }
+
+  .error-page {
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    h3 {
+      font-size: 2.5rem;
+    }
+    a {
+      font-size: 1.5rem;
+      color: green;
+    }
+
+  }
+
+  h1 {
+    background-color: #dddddd;
+  }
+  .card {
+    .card-header {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .img-large {
+      max-width: 80%;
+      height: auto;
+      display: block;
+      @media (min-width: 540px) {
+        max-width: 40%;
+        float: left;
+      }
+    }
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .full {
+      text-indent: 30px;
+      white-space: normal;
+      overflow: auto;
+      text-align: justify;
+    }
+  }
+
+}
+
+
+

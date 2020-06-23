@@ -1,0 +1,17 @@
+{{#each this}}
+  <div class="card my-3" data-index="{{id}}">
+    <h5 class="card-header text-center">{{name}}</h5>
+    <div class="row no-gutters">
+      <div class="col-2">
+        <img src="{{content.img.url}}" class="card-img img-fluid ml-2 mt-2 m-sm-2 m-lg-3 img-thumbnail"
+             alt="{{content.img.name}}">
+      </div>
+      <div class="col-10">
+        <div class="card-body ml-3 text-left">
+          <p class="card-text">{{content.data}}</p>
+          <a href="#" class="btn-more" data-more="{{id}}">Подробнее..</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}
